@@ -1,4 +1,4 @@
-"""StoryAI V4: train your randomly initialized PyTorch Transformer on pretokenized novels."""
+"""StoryAI V8 training: supports genre-conditioned V5 and structured V8 token datasets."""
 import argparse
 import hashlib
 import json
@@ -30,7 +30,7 @@ def lr_at(step, warmup, total, peak, minimum):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--data-dir', default='dataset/processed')
-    p.add_argument('--checkpoint', default='checkpoints/storyai_v6.pt')
+    p.add_argument('--checkpoint', default='checkpoints/storyai_v8.pt')
     p.add_argument('--resume', action='store_true')
     p.add_argument('--steps', type=int, default=1000, help='Total optimizer updates, including resumed steps')
     p.add_argument('--batch-size', type=int, default=8, help='Micro-batch size')
@@ -50,10 +50,12 @@ def main():
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--patience', type=int, default=0)
     args = p.parse_args()
-    if args.steps < 1 or args.batch_size < 1 or args.grad_accum < 1 or args.eval_every < 1:
-        p.error('steps, batch-size, grad-accum, and eval-every must be positive')
+    if min(args.steps, args.batch_size, args.grad_accum, args.eval_every, args.eval_batches, args.block_size) < 1:
+        p.error('steps, batch-size, grad-accum, eval-every, eval-batches and block-size must be positive')
     if args.warmup < 0 or args.min_lr < 0 or args.lr <= 0 or args.min_lr > args.lr:
         p.error('Require warmup >= 0 and 0 <= min-lr <= lr')
+    if args.n_embd % args.n_head != 0:
+        p.error('n-embd must be divisible by n-head')
 
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -64,7 +66,7 @@ def main():
     if args.amp in ('fp16', 'bf16') and device != 'cuda':
         p.error('fp16/bf16 AMP requires CUDA; use --amp off on CPU')
     use_amp = device == 'cuda' and args.amp != 'off'
-    amp_dtype = torch.bfloat16 if args.amp == 'bf16' or (args.amp == 'auto' and torch.cuda.is_bf16_supported()) else torch.float16
+    amp_dtype = torch.bfloat16 if args.amp == 'bf16' or (args.amp == 'auto' and device == 'cuda' and torch.cuda.is_bf16_supported()) else torch.float16
     if use_amp and amp_dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported():
         p.error('This GPU does not support bfloat16; choose --amp fp16')
     autocast_ctx = lambda: torch.autocast(device_type='cuda', dtype=amp_dtype) if use_amp else nullcontext()
@@ -72,28 +74,47 @@ def main():
 
     folder = Path(args.data_dir)
     meta = json.loads((folder / 'metadata.json').read_text(encoding='utf-8'))
-    if not meta.get('genre_conditioned'):
-        raise ValueError('Run python prepare_dataset.py to create V5 genre data')
+    if meta.get('structured'):
+        print('StoryAI V8 structured dataset detected', flush=True)
+    elif meta.get('genre_conditioned'):
+        print('StoryAI V5 genre-conditioned dataset detected', flush=True)
+    else:
+        raise ValueError('Unsupported dataset: expected structured=true or genre_conditioned=true in metadata.json')
+
+    # These variables must be initialized for BOTH dataset formats.
     tokenizer_path = folder / 'tokenizer.json'
     tokenizer_hash = sha256_file(tokenizer_path)
+    dataset_hash = sha256_file(folder / 'metadata.json')
     train = load_tokens(folder / 'train.npy')
     val = load_tokens(folder / 'val.npy')
-    config = GPTConfig(vocab_size=meta['vocab_size'], block_size=args.block_size,
+    config = GPTConfig(vocab_size=int(meta['vocab_size']), block_size=args.block_size,
                        n_layer=args.n_layer, n_head=args.n_head, n_embd=args.n_embd,
                        dropout=args.dropout)
     start_step = 0
     checkpoint_path = Path(args.checkpoint)
+    best_checkpoint_path = checkpoint_path.with_name(checkpoint_path.stem + '_best.pt')
+    best_val = float('inf')
+    stale_evals = 0
+
     if args.resume:
-        # Only load checkpoints you created/trust. PyTorch state files are not an interchange security boundary.
+        # Load checkpoints only from trusted sources.
         saved = torch.load(checkpoint_path, map_location='cpu', weights_only=True)
         config = GPTConfig(**saved['config'])
         if saved['tokenizer_sha256'] != tokenizer_hash:
-            raise ValueError('Tokenizer differs from checkpoint; restore the original dataset/processed tokenizer')
-        if saved.get('dataset_sha256') != sha256_file(folder / 'metadata.json'):
+            raise ValueError('Tokenizer differs from checkpoint; restore the original tokenizer')
+        if saved.get('dataset_sha256') != dataset_hash:
             raise ValueError('Dataset metadata changed; do not resume against a different corpus')
         start_step = int(saved['step'])
+        best_val = float(saved.get('best_val', float('inf')))
+        stale_evals = int(saved.get('stale_evals', 0))
+        if 'best_val' not in saved and best_checkpoint_path.exists():
+            print('Warning: old checkpoint lacks best_val; best checkpoint may be overwritten after resume.', flush=True)
+
     if min(len(train), len(val)) <= config.block_size:
-        raise ValueError('Not enough tokens for block size; add novels or lower --block-size')
+        raise ValueError('Not enough tokens for block size; add data or lower --block-size')
+    if config.vocab_size != int(meta['vocab_size']):
+        raise ValueError('Checkpoint vocabulary size does not match dataset metadata')
+
     model = GPT(config).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     if args.resume:
@@ -108,6 +129,7 @@ def main():
         if device == 'cuda' and saved.get('cuda_rng') is not None:
             torch.cuda.set_rng_state_all(saved['cuda_rng'])
         del saved
+
     checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
     print(f'Device={device} AMP={amp_dtype if use_amp else "off"} parameters={model.get_num_params():,} '
           f'train_tokens={len(train):,} val_tokens={len(val):,} start_step={start_step}', flush=True)
@@ -124,8 +146,6 @@ def main():
         model.train()
         return sum(losses) / len(losses)
 
-    best_val = float('inf')
-    stale_evals = 0
     model.train()
     for step in range(start_step, args.steps):
         lr = lr_at(step, args.warmup, args.steps, args.lr, args.min_lr)
@@ -150,24 +170,26 @@ def main():
             if val_loss < best_val:
                 best_val, stale_evals = val_loss, 0
                 torch.save({'model': model.state_dict(), 'config': asdict(config), 'step': completed,
-                            'tokenizer_sha256': tokenizer_hash}, checkpoint_path.with_name('storyai_v6_best.pt'))
+                            'tokenizer_sha256': tokenizer_hash}, best_checkpoint_path)
             else:
                 stale_evals += 1
             state = dict(model=model.state_dict(), optimizer=optimizer.state_dict(),
                          scaler=scaler.state_dict() if scaler.is_enabled() else None,
                          config=asdict(config), step=completed,
-                         tokenizer_sha256=tokenizer_hash,
-                         dataset_sha256=sha256_file(folder / 'metadata.json'),
-                         torch_rng=torch.get_rng_state(), numpy_rng=(lambda s: (s[0], s[1].tolist(), s[2], s[3], s[4]))(np.random.get_state()),
+                         tokenizer_sha256=tokenizer_hash, dataset_sha256=dataset_hash,
+                         best_val=best_val, stale_evals=stale_evals,
+                         torch_rng=torch.get_rng_state(),
+                         numpy_rng=(lambda s: (s[0], s[1].tolist(), s[2], s[3], s[4]))(np.random.get_state()),
                          python_rng=random.getstate(),
                          cuda_rng=torch.cuda.get_rng_state_all() if device == 'cuda' else None)
             temp_path = checkpoint_path.with_suffix('.tmp')
             torch.save(state, temp_path)
             temp_path.replace(checkpoint_path)
             if args.patience and stale_evals >= args.patience:
-                print("Early stopping: validation did not improve")
+                print('Early stopping: validation did not improve', flush=True)
                 break
-    print(f'Saved: {checkpoint_path}')
+    print(f'Saved: {checkpoint_path}', flush=True)
+
 
 if __name__ == '__main__':
     main()

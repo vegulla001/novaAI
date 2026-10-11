@@ -1,0 +1,6 @@
+{
+  "vocab_size": 1024,
+  "structured": true,
+  "train_tokens": 4274540,
+  "val_tokens": 473640
+}
