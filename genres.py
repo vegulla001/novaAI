@@ -1,7 +1,7 @@
 """Genre tags used for conditional text generation."""
 import json
 from pathlib import Path
-GENRES = ('ACTION','ADVENTURE','FANTASY','ROMANCE','MYSTERY','THRILLER','HORROR','SCI_FI','COMEDY','DRAMA','SLICE_OF_LIFE','SUPERNATURAL','HISTORICAL')
+GENRES = ('ACTION','ADVENTURE','FANTASY','ROMANCE','MYSTERY','THRILLER','HORROR','SCI_FI','COMEDY','DRAMA','SLICE_OF_LIFE','SUPERNATURAL','HISTORICAL','TRAGEDY')
 def normalize_genres(items):
     genres = []
     for item in items:

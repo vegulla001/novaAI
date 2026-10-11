@@ -1,4 +1,15 @@
 {
-  "demo_one.txt": ["ACTION", "ADVENTURE"],
-  "demo_two.txt": ["FANTASY", "MYSTERY"]
+  "sherlock_holmes.txt": ["MYSTERY", "ADVENTURE"],
+  "dracula.txt": ["HORROR", "SUPERNATURAL"],
+  "romeo_juliet.txt": [
+      "ROMANCE",
+      "DRAMA",
+      "TRAGEDY"
+    ],
+    "pride_prejudice.txt": [
+      "ROMANCE",
+      "DRAMA",
+      "COMEDY",
+      "HISTORICAL"
+    ]
 }
