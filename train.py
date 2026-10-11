@@ -30,7 +30,7 @@ def lr_at(step, warmup, total, peak, minimum):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--data-dir', default='dataset/processed')
-    p.add_argument('--checkpoint', default='checkpoints/storyai.pt')
+    p.add_argument('--checkpoint', default='checkpoints/storyai_v5.pt')
     p.add_argument('--resume', action='store_true')
     p.add_argument('--steps', type=int, default=1000, help='Total optimizer updates, including resumed steps')
     p.add_argument('--batch-size', type=int, default=8, help='Micro-batch size')
@@ -48,6 +48,7 @@ def main():
     p.add_argument('--eval-batches', type=int, default=10)
     p.add_argument('--amp', choices=['auto', 'off', 'fp16', 'bf16'], default='auto')
     p.add_argument('--seed', type=int, default=42)
+    p.add_argument('--patience', type=int, default=0)
     args = p.parse_args()
     if args.steps < 1 or args.batch_size < 1 or args.grad_accum < 1 or args.eval_every < 1:
         p.error('steps, batch-size, grad-accum, and eval-every must be positive')
@@ -71,6 +72,8 @@ def main():
 
     folder = Path(args.data_dir)
     meta = json.loads((folder / 'metadata.json').read_text(encoding='utf-8'))
+    if not meta.get('genre_conditioned'):
+        raise ValueError('Run python prepare_dataset.py to create V5 genre data')
     tokenizer_path = folder / 'tokenizer.json'
     tokenizer_hash = sha256_file(tokenizer_path)
     train = load_tokens(folder / 'train.npy')
@@ -84,18 +87,8 @@ def main():
         # Only load checkpoints you created/trust. PyTorch state files are not an interchange security boundary.
         saved = torch.load(checkpoint_path, map_location='cpu', weights_only=True)
         config = GPTConfig(**saved['config'])
-        saved_tokenizer_hash = saved.get("tokenizer_sha256")
-
-        if saved_tokenizer_hash is None:
-            print(
-                "WARNING: Checkpoint does not contain tokenizer_sha256. "
-                "Tokenizer compatibility cannot be verified."
-            )
-        elif saved_tokenizer_hash != tokenizer_hash:
-            raise ValueError(
-                "Tokenizer mismatch! "
-                "The checkpoint was trained using a different tokenizer."
-            )
+        if saved['tokenizer_sha256'] != tokenizer_hash:
+            raise ValueError('Tokenizer differs from checkpoint; restore the original dataset/processed tokenizer')
         if saved.get('dataset_sha256') != sha256_file(folder / 'metadata.json'):
             raise ValueError('Dataset metadata changed; do not resume against a different corpus')
         start_step = int(saved['step'])
@@ -131,6 +124,8 @@ def main():
         model.train()
         return sum(losses) / len(losses)
 
+    best_val = float('inf')
+    stale_evals = 0
     model.train()
     for step in range(start_step, args.steps):
         lr = lr_at(step, args.warmup, args.steps, args.lr, args.min_lr)
@@ -152,6 +147,12 @@ def main():
         if completed == 1 or completed % args.eval_every == 0 or completed == args.steps:
             val_loss = evaluate()
             print(f'step={completed} lr={lr:.2e} train_loss={train_loss:.4f} val_loss={val_loss:.4f}', flush=True)
+            if val_loss < best_val:
+                best_val, stale_evals = val_loss, 0
+                torch.save({'model': model.state_dict(), 'config': asdict(config), 'step': completed,
+                            'tokenizer_sha256': tokenizer_hash}, checkpoint_path.with_name('storyai_v5_best.pt'))
+            else:
+                stale_evals += 1
             state = dict(model=model.state_dict(), optimizer=optimizer.state_dict(),
                          scaler=scaler.state_dict() if scaler.is_enabled() else None,
                          config=asdict(config), step=completed,
@@ -163,6 +164,9 @@ def main():
             temp_path = checkpoint_path.with_suffix('.tmp')
             torch.save(state, temp_path)
             temp_path.replace(checkpoint_path)
+            if args.patience and stale_evals >= args.patience:
+                print("Early stopping: validation did not improve")
+                break
     print(f'Saved: {checkpoint_path}')
 
 if __name__ == '__main__':

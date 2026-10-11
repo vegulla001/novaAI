@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 import numpy as np
 from tokenizer import BPETokenizer
+from genres import load_genres, genre_prefix
 
 START = re.compile(r"^\s*\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK\b.*$", re.I | re.M)
 END = re.compile(r"^\s*\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK\b.*$", re.I | re.M)
@@ -33,7 +34,11 @@ def main():
     p.add_argument("--val-ratio", type=float, default=0.1)
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--tokenizer-chars", type=int, default=150000, help="Cap BPE training sample to keep pure-Python training manageable")
+    p.add_argument("--genres-file", default="dataset/genres.json")
+    p.add_argument("--chunk-chars", type=int, default=800)
     args = p.parse_args()
+    if args.chunk_chars < 200: p.error("--chunk-chars must be >= 200")
+    genre_map = load_genres(args.genres_file)
     if not 0 < args.val_ratio < 1: raise ValueError("--val-ratio must be between 0 and 1")
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -49,7 +54,8 @@ def main():
             print(f"SKIP duplicate: {file}")
             continue
         seen.add(digest)
-        books.append((str(file), text))
+        if file.name not in genre_map: raise ValueError(f"Add genres for {file.name} to {args.genres_file}")
+        books.append((str(file), text, genre_map[file.name]))
     if len(books) < 2:
         raise ValueError("Add at least two distinct novels to dataset/novels/ for book-level validation.")
     random.Random(args.seed).shuffle(books)
@@ -57,8 +63,15 @@ def main():
     val_books = books[:val_count]
     train_books = books[val_count:]
     if not train_books: raise ValueError("No training books left after split.")
-    train_text = "\n\n".join(text for _, text in train_books)
-    val_text = "\n\n".join(text for _, text in val_books)
+    def tagged_corpus(items):
+        chunks = []
+        for _, content, labels in items:
+            prefix = genre_prefix(labels)
+            for offset in range(0, len(content), args.chunk_chars):
+                chunks.append(prefix + content[offset:offset + args.chunk_chars])
+        return "\n\n".join(chunks)
+    train_text = tagged_corpus(train_books)
+    val_text = tagged_corpus(val_books)
     # Training on a limited deterministic sample avoids O(vocab_size * corpus_size)
     # BPE training time on huge corpora. Encoding still processes all books.
     sample = train_text[:args.tokenizer_chars]
@@ -69,9 +82,11 @@ def main():
     np.save(out / "train.npy", train_ids)
     np.save(out / "val.npy", val_ids)
     metadata = {
-        "train_books": [name for name, _ in train_books],
-        "val_books": [name for name, _ in val_books],
+        "train_books": [name for name, _, _ in train_books],
+        "val_books": [name for name, _, _ in val_books],
         "vocab_size": tokenizer.vocab_size,
+        "genre_conditioned": True,
+        "chunk_chars": args.chunk_chars,
         "train_tokens": len(train_ids),
         "val_tokens": len(val_ids),
         "tokenizer_training_chars": len(sample),
