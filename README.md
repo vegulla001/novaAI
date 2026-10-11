@@ -1,4 +1,4 @@
-# StoryAI V5 — genre-conditioned, multi-chapter novel drafting
+# NovaAI V5 — genre-conditioned, multi-chapter novel drafting
 
 This project trains **your own randomly initialized PyTorch Transformer**. No pretrained models, hosted AI APIs, or TorchText are required.
 
