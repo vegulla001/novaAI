@@ -1,68 +1,34 @@
-# NovaAI V5 — genre-conditioned, multi-chapter novel drafting
+# StoryAI V6 — Improving Readability (experimental)
 
-This project trains **your own randomly initialized PyTorch Transformer**. No pretrained models, hosted AI APIs, or TorchText are required.
+This is an original randomly initialized PyTorch Transformer (RoPE, RMSNorm, SwiGLU), not a pretrained model. It does **not** guarantee fluent English or a coherent novel. Four novels are far too few to train a strong novelist from scratch.
 
-## Important limitations
+## Changes from V5
+- Genre labels preserved, but genre markers are placed once per book by default instead of every 800 characters. This reduces control-token leakage and artificial mid-sentence interruptions.
+- BPE vocabulary sample is spread across training books rather than drawn entirely from the beginning of the first book.
+- TXT-only novel output, configurable chapter outline, repetition penalty, and removal of visible genre tags.
+- New V6 checkpoint names avoid overwriting V5 checkpoints.
+- Existing V5 validation-loss monitoring, early stopping and best-checkpoint saving retained.
 
-- Genre *conditioning* is implemented: a novel can have several labels (ACTION + ADVENTURE, etc.). Automatic genre **classification** is **not trained**; four books are insufficient for a useful classifier.
-- `generate_novel.py` produces a complete **multi-chapter draft file** in Markdown, but it cannot promise coherent, publication-quality novel-length writing. With four novels and a short context window, repetition and contradictions are likely.
-- V5 re-trains on genre-tagged text. **Do not resume a V4 checkpoint against this new corpus**; the tokenized data and tokenizer may differ. Back up your existing checkpoint and processed data before running preparation.
-
-## 1. Setup (PowerShell)
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-## 2. Prepare novels and genre labels
-
-Put at least **two distinct UTF-8 novels** in `dataset/novels/`. Two short demonstration texts are included for a smoke test; replace them with your real novels.
-
-Edit `dataset/genres.json` to assign one or more genres to **every `.txt` filename**:
-
-```json
-{
-  "sherlock_holmes.txt": ["MYSTERY", "ADVENTURE"],
-  "dracula.txt": ["HORROR", "SUPERNATURAL"],
-  "frankenstein.txt": ["SCI_FI", "HORROR"],
-  "the_time_machine.txt": ["SCI_FI", "ADVENTURE"]
-}
-```
-
-Genres: ACTION, ADVENTURE, FANTASY, ROMANCE, MYSTERY, THRILLER, HORROR, SCI_FI, COMEDY, DRAMA, SLICE_OF_LIFE, SUPERNATURAL, HISTORICAL.
+## Windows PowerShell
 
 ```powershell
-python prepare_dataset.py --vocab-size 512 --min-chars 1000
+python -m pip install -r requirements.txt
 ```
 
-The preparation script inserts genre prefixes repeatedly into the training text. Splitting is **by entire book**, so with only four books validation is necessarily noisy. Genre prefixes are ordinary BPE-encoded text, not reserved vocabulary tokens.
-
-## 3. Train on CPU
+Put your own UTF-8 public-domain novels in `dataset/novels/`, and label **each file** in `dataset/genres.json`. At least two distinct books are needed. Remove demo books or label them if you keep them.
 
 ```powershell
+python prepare_dataset.py --vocab-size 1024 --min-chars 1000 --chunk-chars 0
 python train.py --steps 2000 --batch-size 4 --grad-accum 4 --block-size 128 --n-layer 4 --n-head 4 --n-embd 128 --dropout 0.1 --eval-every 100 --amp off --patience 10
+python generate_novel.py --genres ACTION ADVENTURE --title "The Lost Kingdom" --premise "A warrior searches for a lost kingdom" --chapters 3 --tokens-per-chapter 300 --outline-file chapter_outline.txt --output output/lost_kingdom.txt
 ```
 
-Outputs: `checkpoints/storyai_v5.pt` (latest resume state) and `checkpoints/storyai_v5_best.pt` (best observed validation loss). **V5 checkpoints are separate from V4.** Resume only if the dataset/tokenizer match:
+Best weights: `checkpoints/storyai_v6_best.pt`. Latest resumable state: `checkpoints/storyai_v6.pt`.
 
-```powershell
-python train.py --resume --steps 3000 --checkpoint checkpoints/storyai_v5.pt --batch-size 4 --grad-accum 4 --amp off
-```
+**Do not use `--resume` with V4/V5 checkpoints after regenerating the tokenizer.** The token-ID mapping changes. Keep your old checkpoints and tokenizer backed up. Increasing context or model size also requires a new run or an explicitly designed migration.
 
-## 4. Generate a multi-chapter novel draft
+## What to expect
 
-```powershell
-python generate_novel.py --genres ACTION ADVENTURE --title "The Lost Kingdom" --premise "A young warrior searches for a lost kingdom" --chapters 8 --tokens-per-chapter 500 --output output/lost_kingdom.md
-```
+Training 2,000 steps on four books will likely produce misspellings and weak coherence. Better generation needs much more clean text, an appropriate vocabulary, and enough compute. A 128-token context cannot remember an entire chapter or novel. The outline is a prompt, not a reliable long-term memory system.
 
-Use `--outline-file chapter_outlines.txt` for one outline per line. The output file is written **incrementally** so finished chapters remain on disk if generation is interrupted.
-
-A 50,000-word novel requires vastly more tokens than the defaults and much stronger training/context memory. This script is a draft-generation scaffold, not a high-quality long-form writing solution.
-
-## Notes
-
-- For large datasets, replace the simple Python BPE implementation with a more efficient **self-trained** tokenizer.
-- The model's `generate` method recomputes attention at each token; KV caching would substantially improve generation speed.
-- Do not delete your V4 checkpoint. Genre conditioning is a new training objective and the old checkpoint cannot safely be resumed as-is.
+For an honest quality check, generate 100–200 tokens every few hundred steps and compare outputs. Monitor held-out validation loss. A good-looking text file is not proof that the model can write a novel.

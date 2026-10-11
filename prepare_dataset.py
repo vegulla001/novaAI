@@ -35,10 +35,20 @@ def main():
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--tokenizer-chars", type=int, default=150000, help="Cap BPE training sample to keep pure-Python training manageable")
     p.add_argument("--genres-file", default="dataset/genres.json")
-    p.add_argument("--chunk-chars", type=int, default=800)
+    p.add_argument("--chunk-chars", type=int, default=0, help="0 keeps books intact (recommended); >0 repeats genre tags between chunks")
     args = p.parse_args()
-    if args.chunk_chars < 200: p.error("--chunk-chars must be >= 200")
-    genre_map = load_genres(args.genres_file)
+    if args.chunk_chars != 0 and args.chunk_chars < 200: p.error("--chunk-chars must be 0 or >= 200")
+    genre_file = Path(args.genres_file)
+    if not genre_file.exists():
+        print('No genre metadata found; creating heuristic genre suggestions.')
+        from auto_genres import predict_file
+        names = sorted(Path(args.input_dir).rglob('*.txt'))
+        genre_map = {f.name: predict_file(f)[0] for f in names}
+        genre_file.parent.mkdir(parents=True, exist_ok=True)
+        genre_file.write_text(json.dumps(genre_map, indent=2), encoding='utf-8')
+        print('WARNING: Genre labels are keyword-based guesses. Review', genre_file)
+    else:
+        genre_map = load_genres(genre_file)
     if not 0 < args.val_ratio < 1: raise ValueError("--val-ratio must be between 0 and 1")
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -67,14 +77,23 @@ def main():
         chunks = []
         for _, content, labels in items:
             prefix = genre_prefix(labels)
-            for offset in range(0, len(content), args.chunk_chars):
-                chunks.append(prefix + content[offset:offset + args.chunk_chars])
+            if args.chunk_chars == 0:
+                chunks.append(prefix + content)
+            else:
+                for offset in range(0, len(content), args.chunk_chars):
+                    chunks.append(prefix + content[offset:offset + args.chunk_chars])
         return "\n\n".join(chunks)
     train_text = tagged_corpus(train_books)
     val_text = tagged_corpus(val_books)
     # Training on a limited deterministic sample avoids O(vocab_size * corpus_size)
     # BPE training time on huge corpora. Encoding still processes all books.
-    sample = train_text[:args.tokenizer_chars]
+    # Sample across all training books instead of learning BPE only from the first book.
+    sample_chunks = []
+    budget = args.tokenizer_chars
+    per_book = max(1, budget // len(train_books))
+    for _, content, labels in train_books:
+        sample_chunks.append(genre_prefix(labels) + content[:per_book])
+    sample = "\n".join(sample_chunks)[:budget]
     tokenizer = BPETokenizer.train(sample, vocab_size=args.vocab_size)
     tokenizer.save(out / "tokenizer.json")
     train_ids = np.asarray(tokenizer.encode(train_text), dtype=np.uint32)
@@ -87,6 +106,7 @@ def main():
         "vocab_size": tokenizer.vocab_size,
         "genre_conditioned": True,
         "chunk_chars": args.chunk_chars,
+        "corpus_sha256": hashlib.sha256((train_text + "\0" + val_text).encode("utf-8")).hexdigest(),
         "train_tokens": len(train_ids),
         "val_tokens": len(val_ids),
         "tokenizer_training_chars": len(sample),

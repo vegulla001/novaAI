@@ -30,7 +30,7 @@ def lr_at(step, warmup, total, peak, minimum):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--data-dir', default='dataset/processed')
-    p.add_argument('--checkpoint', default='checkpoints/storyai_v5.pt')
+    p.add_argument('--checkpoint', default='checkpoints/storyai_v6.pt')
     p.add_argument('--resume', action='store_true')
     p.add_argument('--steps', type=int, default=1000, help='Total optimizer updates, including resumed steps')
     p.add_argument('--batch-size', type=int, default=8, help='Micro-batch size')
@@ -150,7 +150,7 @@ def main():
             if val_loss < best_val:
                 best_val, stale_evals = val_loss, 0
                 torch.save({'model': model.state_dict(), 'config': asdict(config), 'step': completed,
-                            'tokenizer_sha256': tokenizer_hash}, checkpoint_path.with_name('storyai_v5_best.pt'))
+                            'tokenizer_sha256': tokenizer_hash}, checkpoint_path.with_name('storyai_v6_best.pt'))
             else:
                 stale_evals += 1
             state = dict(model=model.state_dict(), optimizer=optimizer.state_dict(),
