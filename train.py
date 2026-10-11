@@ -8,6 +8,7 @@ from model import ModelConfig, StoryAI
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", default="dataset/stories.txt")
+    parser.add_argument("--vocab-size", type=int, default=512)
     parser.add_argument("--steps", type=int, default=1000)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--block-size", type=int, default=128)
@@ -20,8 +21,11 @@ def main():
 
     torch.manual_seed(42)
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    train_data, val_data, tokenizer = load_data(args.data)
+    train_data, val_data, tokenizer = load_data(args.data, vocab_size=args.vocab_size)
     tokenizer.save("checkpoints/tokenizer.json")
+    print(f"Device: {device}; BPE vocabulary: {tokenizer.vocab_size}; train tokens: {len(train_data)}; validation tokens: {len(val_data)}")
+    if len(val_data) <= args.block_size:
+        raise ValueError("Validation set too small for block size. Add training text or reduce --block-size.")
 
     cfg = ModelConfig(
         vocab_size=tokenizer.vocab_size,

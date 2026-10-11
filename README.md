@@ -1,24 +1,43 @@
-# StoryAI from scratch (PyTorch only)
+# StoryAI V2 — custom byte-level BPE tokenizer
 
-No pretrained models or third-party model architectures are downloaded. All weights start randomly initialized. `model.py` implements a decoder-only Transformer with RoPE, RMSNorm, and SwiGLU.
+**No pretrained weights, external model APIs, or pretrained tokenizer.**
+`model.py` is your custom RoPE/RMSNorm/SwiGLU Transformer from V1.
 
-## Windows PowerShell
-
+## Setup (PowerShell)
 ```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
 pip install -r requirements.txt
-python train.py --steps 1000 --batch-size 8 --block-size 128
-python generate.py --prompt "The dragon" --tokens 200
 ```
 
-The provided stories.txt is only a smoke-test dataset, so generation will be repetitive or incoherent. Replace it with much more original, public-domain, or properly licensed training text. All characters in your generation prompt must exist in the dataset's vocabulary; otherwise tokenizer.encode raises an error. Save your tokenizer alongside each checkpoint.
+## Test tokenizer
+```powershell
+python tokenizer.py
+```
 
-Files:
-- `model.py`: full neural architecture, with `StoryAI` and `ModelConfig` aliases
-- `tokenizer.py`: own character tokenizer
-- `dataset.py`: 90/10 sequential train/validation split and random next-token batches
-- `train.py`: training, validation, gradient clipping, checkpointing
-- `generate.py`: checkpoint loading and sampling
+## Train on the bundled sample (pipeline smoke test)
+```powershell
+python train.py --steps 100 --batch-size 4 --block-size 32 --n-layer 2 --n-head 4 --n-embd 128 --vocab-size 300 --eval-every 25
+```
 
-For reliable evaluation on real novels, split by document rather than a contiguous token boundary, and use a held-out set of books. For bigger models add checkpoint-resume and mixed precision.
+## Generate
+```powershell
+python generate.py --prompt "The dragon" --tokens 100
+```
+
+## Train on your own larger text corpus
+Replace `dataset/stories.txt` with UTF-8 text you have rights to use.
+```powershell
+python train.py --steps 5000 --batch-size 16 --block-size 128 --n-layer 4 --n-head 4 --n-embd 256 --vocab-size 1024
+```
+
+## How BPE works
+- Starts with 256 byte tokens, supporting any UTF-8 text.
+- Repeatedly merges the most common adjacent token pair.
+- Saves merge rules in `checkpoints/tokenizer.json`.
+- Uses the same rules for encoding training prompts and generated output.
+
+The BPE trainer is deliberately simple and recomputes pair frequencies at each step;
+it is good for learning and small corpora, not optimized for very large datasets.
+Vocabulary and model checkpoint must stay together; changing the vocabulary requires retraining.
+Training on the tiny bundled sample will mostly memorize repetitive text.

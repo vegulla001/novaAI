@@ -1,7 +1,7 @@
 import argparse
 import torch
 from model import StoryAI, ModelConfig
-from tokenizer import CharTokenizer
+from tokenizer import BPETokenizer
 
 def main():
     parser = argparse.ArgumentParser()
@@ -12,7 +12,7 @@ def main():
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     checkpoint = torch.load("checkpoints/storyai.pt", map_location=device, weights_only=True)
-    tokenizer = CharTokenizer.load("checkpoints/tokenizer.json")
+    tokenizer = BPETokenizer.load("checkpoints/tokenizer.json")
     model = StoryAI(ModelConfig(**checkpoint["config"])).to(device)
     model.load_state_dict(checkpoint["model"])
     model.eval()
