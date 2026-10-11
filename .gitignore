@@ -1,92 +1,22 @@
-# ==========================================
-# Python
-# ==========================================
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-*.egg-info/
-build/
-dist/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-
-# ==========================================
-# Virtual Environments
-# ==========================================
 .venv/
 venv/
-env/
-ENV/
-
-# ==========================================
-# Environment Variables & Secrets
-# ==========================================
 .env
 .env.*
 !.env.example
-*.pem
-*.key
-
-# ==========================================
-# PyTorch Model Checkpoints
-# ==========================================
 checkpoints/*
 !checkpoints/.gitkeep
-
+dataset/novels/*
+!dataset/novels/.gitkeep
+dataset/processed/*
+!dataset/processed/.gitkeep
 *.pt
 *.pth
 *.ckpt
-*.safetensors
-*.onnx
-
-# ==========================================
-# Training Datasets
-# ==========================================
-dataset/*
-!dataset/.gitkeep
-!dataset/stories.txt
-
-*.bin
-*.npy
-*.npz
-
-# ==========================================
-# Training Logs
-# ==========================================
-logs/
-runs/
-wandb/
-tensorboard/
-events.out.tfevents.*
 *.log
-
-# ==========================================
-# Jupyter Notebook
-# ==========================================
-.ipynb_checkpoints/
-
-# ==========================================
-# VS Code / IDE
-# ==========================================
+.pytest_cache/
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# ==========================================
-# Operating System
-# ==========================================
 .DS_Store
 Thumbs.db
-desktop.ini
-
-# ==========================================
-# Temporary Files
-# ==========================================
-tmp/
-temp/
-.cache/
-*.tmp
