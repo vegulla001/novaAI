@@ -84,8 +84,18 @@ def main():
         # Only load checkpoints you created/trust. PyTorch state files are not an interchange security boundary.
         saved = torch.load(checkpoint_path, map_location='cpu', weights_only=True)
         config = GPTConfig(**saved['config'])
-        if saved['tokenizer_sha256'] != tokenizer_hash:
-            raise ValueError('Tokenizer differs from checkpoint; restore the original dataset/processed tokenizer')
+        saved_tokenizer_hash = saved.get("tokenizer_sha256")
+
+        if saved_tokenizer_hash is None:
+            print(
+                "WARNING: Checkpoint does not contain tokenizer_sha256. "
+                "Tokenizer compatibility cannot be verified."
+            )
+        elif saved_tokenizer_hash != tokenizer_hash:
+            raise ValueError(
+                "Tokenizer mismatch! "
+                "The checkpoint was trained using a different tokenizer."
+            )
         if saved.get('dataset_sha256') != sha256_file(folder / 'metadata.json'):
             raise ValueError('Dataset metadata changed; do not resume against a different corpus')
         start_step = int(saved['step'])
