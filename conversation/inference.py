@@ -57,15 +57,64 @@ class ConversationAI:
             name, role = m.group(1), m.group(2).lower()
             self.last_character = name
             return {'action': 'ADD_CHARACTER', 'name': name, 'role': role}
+        # --------------------------------------------------
+        # UPDATE CHARACTER
+        # --------------------------------------------------
 
-        m = re.fullmatch(r'(?:make|change|update|turn)\s+(' + NAME + r'|her|him|them)\s+(?:(?:into|to be|to|as)\s+)?(?:a\s+|an\s+)?(' + ROLE + r')[.! ]*', msg, re.I)
+        # First handle pronoun-based follow-up instructions.
+        m = re.fullmatch(
+            r'(?:make|change|update|turn)\s+'
+            r'(her|him|them)\s+'
+            r'(?:(?:into|to be|to|as)\s+)?'
+            r'(?:a\s+|an\s+)?'
+            r'(' + ROLE + r')[.! ]*',
+            msg,
+            re.I
+        )
+
         if m:
-            requested, role = m.group(1), m.group(2).lower()
-            name = self.last_character if requested.lower() in ('her', 'him', 'them') else existing.get(requested.casefold(), requested)
+            role = m.group(2).lower()
+
+            if not self.last_character:
+                return {
+                    'action': 'UNRECOGNIZED',
+                    'reason': 'No previously mentioned character.'
+                }
+
+            return {
+                'action': 'UPDATE_CHARACTER',
+                'name': self.last_character,
+                'role': role
+            }
+
+        # Then handle explicitly named characters.
+        m = re.fullmatch(
+            r'(?:make|change|update|turn)\s+'
+            r'(' + NAME + r')\s+'
+            r'(?:(?:into|to be|to|as)\s+)?'
+            r'(?:a\s+|an\s+)?'
+            r'(' + ROLE + r')[.! ]*',
+            msg,
+            re.I
+        )
+
+        if m:
+            requested = m.group(1).strip()
+            role = m.group(2).lower()
+
+            name = existing.get(requested.casefold())
+
             if not name:
-                return {'action': 'UNRECOGNIZED', 'reason': 'No previously mentioned character to resolve pronoun.'}
-            self.last_character = name
-            return {'action': 'UPDATE_CHARACTER', 'name': name, 'role': role}
+                return {
+                    'action': 'UNRECOGNIZED',
+                    'reason': f'Character {requested} does not exist.'
+                }
+
+            return {
+                'action': 'UPDATE_CHARACTER',
+                'name': name,
+                'role': role
+            }
 
         m = re.fullmatch(r'(?:add|create)(?: a)?(?: new)? chapter (?:called|titled|named)\s+(.+?)[.! ]*', msg, re.I)
         if m:
