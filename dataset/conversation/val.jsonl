@@ -1,0 +1,1200 @@
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Nora a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"scholar"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create Lyra, a healer.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"healer"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make Finn a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"warrior"}}
+{"user":"Create Lyra, a ranger.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Create Rowan, a knight.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"knight"}}
+{"user":"Change Vex into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"knight"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a character named Elara who is a knight.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"knight"}}
+{"user":"Create Mira, a mage.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Darin to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"villain"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create Zara, a ranger.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a character named Orin who is a villain.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"villain"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Update Arin to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"mage"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Zara a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"warrior"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change Mira into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"ranger"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Sera a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"scholar"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Talia as a mage.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"mage"}}
+{"user":"Create Finn, a knight.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"knight"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Finn into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"knight"}}
+{"user":"Create Rowan, a mage.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"mage"}}
+{"user":"Make Arin a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"ranger"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a character named Vex who is a villain.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Create Kael, a scholar.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"scholar"}}
+{"user":"Update Orin to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"healer"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make Zara a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Make Rowan a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Create Rowan, a healer.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"healer"}}
+{"user":"Make Sera a villain.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"villain"}}
+{"user":"Add a character named Lyra who is a villain.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"villain"}}
+{"user":"Change Vex into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"mage"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Introduce Talia as a warrior.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"warrior"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Nora a mage.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"mage"}}
+{"user":"Change Orin into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"mage"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Update Finn to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"ranger"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a character named Kael who is a knight.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Kael as a knight.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Mira as a ranger.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"ranger"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Create Nora, a villain.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create Vex, a ranger.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"ranger"}}
+{"user":"Create Darin, a healer.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"healer"}}
+{"user":"Make Finn a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"ranger"}}
+{"user":"Change Zara into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Update Elara to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"villain"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make Arin a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"scholar"}}
+{"user":"Make Kael a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"warrior"}}
+{"user":"Make Nora a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"warrior"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make Mira a villain.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"villain"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Introduce Talia as a scholar.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"scholar"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Zara into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"warrior"}}
+{"user":"Make Lyra a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a character named Orin who is a villain.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"villain"}}
+{"user":"Change Rowan into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"knight"}}
+{"user":"Change Mira into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"knight"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Update Vex to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Nora a villain.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Update Talia to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"mage"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Update Finn to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"ranger"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create Finn, a warrior.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"warrior"}}
+{"user":"Add a character named Arin who is a knight.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"knight"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make Zara a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a character named Finn who is a healer.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"healer"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change Arin into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"warrior"}}
+{"user":"Create Elara, a scholar.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"scholar"}}
+{"user":"Make Rowan a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Update Talia to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"scholar"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Vex as a ranger.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"ranger"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create Zara, a ranger.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Introduce Finn as a villain.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"villain"}}
+{"user":"Create Sera, a villain.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"villain"}}
+{"user":"Make Kael a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"scholar"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change Darin into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"villain"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make Lyra a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"scholar"}}
+{"user":"Create Vex, a scholar.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"scholar"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Update Rowan to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"villain"}}
+{"user":"Make Rowan a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"ranger"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Introduce Nora as a warrior.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"warrior"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Update Lyra to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"warrior"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create Arin, a scholar.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"scholar"}}
+{"user":"Change Sera into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"warrior"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Mira a villain.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"villain"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Update Sera to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"ranger"}}
+{"user":"Make Zara a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Create Rowan, a villain.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"villain"}}
+{"user":"Create Darin, a mage.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"mage"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create Elara, a ranger.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"ranger"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Darin into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"knight"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Change Darin into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"ranger"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Vex as a ranger.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"ranger"}}
+{"user":"Update Finn to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"mage"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Introduce Rowan as a ranger.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"ranger"}}
+{"user":"Update Darin to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"healer"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a character named Zara who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Add a character named Sera who is a healer.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"healer"}}
+{"user":"Create Vex, a villain.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Add a character named Elara who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"warrior"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create Zara, a warrior.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"warrior"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a character named Talia who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"ranger"}}
+{"user":"Update Talia to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"villain"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Introduce Mira as a ranger.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"ranger"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make Lyra a knight.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"knight"}}
+{"user":"Make Sera a mage.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"mage"}}
+{"user":"Make Sera a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"warrior"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Nora to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"warrior"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Introduce Finn as a knight.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"knight"}}
+{"user":"Make Orin a healer.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"healer"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Finn as a warrior.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"warrior"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Change Lyra into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Update Vex to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Nora as a mage.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"mage"}}
+{"user":"Create Kael, a knight.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Mira to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"warrior"}}
+{"user":"Introduce Rowan as a warrior.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Make Mira a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"warrior"}}
+{"user":"Add a character named Elara who is a mage.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"mage"}}
+{"user":"Introduce Kael as a healer.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"healer"}}
+{"user":"Update Lyra to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"warrior"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Update Nora to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"scholar"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create Darin, a scholar.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"scholar"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create Sera, a warrior.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"warrior"}}
+{"user":"Update Vex to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"scholar"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Elara as a knight.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"knight"}}
+{"user":"Add a character named Mira who is a villain.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"villain"}}
+{"user":"Change Darin into a healer.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"healer"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Introduce Elara as a knight.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"knight"}}
+{"user":"Add a character named Arin who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"warrior"}}
+{"user":"Create Talia, a scholar.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"scholar"}}
+{"user":"Add a character named Kael who is a knight.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Add a character named Elara who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"ranger"}}
+{"user":"Change Rowan into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"knight"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create Lyra, a ranger.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a character named Mira who is a mage.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Vex into a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"scholar"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Vex into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a character named Nora who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"ranger"}}
+{"user":"Add a character named Sera who is a knight.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"knight"}}
+{"user":"Update Arin to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"mage"}}
+{"user":"Introduce Nora as a villain.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Update Zara to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Change Darin into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"mage"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create Mira, a healer.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"healer"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create Sera, a villain.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"villain"}}
+{"user":"Change Mira into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"warrior"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Introduce Arin as a healer.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"healer"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a character named Mira who is a mage.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make Sera a mage.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"mage"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Update Kael to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"warrior"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Talia as a knight.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"knight"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Lyra to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"scholar"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Rowan into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make Vex a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"warrior"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change Finn into a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"scholar"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Sera a healer.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"healer"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Darin as a healer.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"healer"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Nora a villain.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make Lyra a villain.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"villain"}}
+{"user":"Introduce Arin as a warrior.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"warrior"}}
+{"user":"Create Sera, a scholar.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"scholar"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Talia as a villain.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"villain"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make Arin a healer.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"healer"}}
+{"user":"Update Arin to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"villain"}}
+{"user":"Add a character named Talia who is a villain.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"villain"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Update Lyra to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Introduce Elara as a knight.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"knight"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Orin a mage.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"mage"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Nora to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"ranger"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Introduce Kael as a mage.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"mage"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Update Mira to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"scholar"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Change Zara into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"villain"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Lyra into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Talia as a villain.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"villain"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a character named Orin who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"warrior"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a character named Talia who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"ranger"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a character named Rowan who is a knight.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"knight"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create Kael, a scholar.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"scholar"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Update Zara to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"mage"}}
+{"user":"Add a character named Talia who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"scholar"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Update Vex to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"healer"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Update Sera to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"ranger"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a character named Vex who is a villain.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change Vex into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Introduce Talia as a mage.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"mage"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create Elara, a healer.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"healer"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create Sera, a warrior.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"warrior"}}
+{"user":"Introduce Elara as a villain.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"villain"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create Rowan, a healer.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"healer"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a character named Darin who is a villain.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"villain"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a character named Arin who is a villain.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"villain"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change Rowan into a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"scholar"}}
+{"user":"Make Kael a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"ranger"}}
+{"user":"Create Orin, a scholar.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"scholar"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make Nora a knight.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"knight"}}
+{"user":"Update Lyra to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"scholar"}}
+{"user":"Make Darin a villain.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"villain"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change Sera into a healer.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"healer"}}
+{"user":"Create Elara, a warrior.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"warrior"}}
+{"user":"Make Arin a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"scholar"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create Arin, a ranger.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"ranger"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create Orin, a warrior.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"warrior"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make Mira a knight.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"knight"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create Orin, a knight.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"knight"}}
+{"user":"Change Zara into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"mage"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Talia a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"warrior"}}
+{"user":"Make Darin a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"ranger"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Create Nora, a healer.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"healer"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Lyra as a villain.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"villain"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Create Nora, a villain.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Add a character named Sera who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"warrior"}}
+{"user":"Update Rowan to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"mage"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Update Elara to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"scholar"}}
+{"user":"Introduce Nora as a warrior.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"warrior"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Update Nora to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"scholar"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a character named Kael who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"ranger"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a character named Mira who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"warrior"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Orin as a knight.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"knight"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change Finn into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"warrior"}}
+{"user":"Create Zara, a healer.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"healer"}}
+{"user":"Add a character named Lyra who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Make Orin a healer.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"healer"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Update Mira to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Make Lyra a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"warrior"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Vex into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"warrior"}}
+{"user":"Create Nora, a villain.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Update Arin to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"healer"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Change Zara into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Change Rowan into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"mage"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Lyra a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"ranger"}}
+{"user":"Add a character named Kael who is a knight.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Create Mira, a mage.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Add a character named Vex who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"warrior"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create Arin, a ranger.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"ranger"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Update Rowan to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"healer"}}
+{"user":"Create Orin, a knight.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"knight"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Create Orin, a mage.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"mage"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a character named Rowan who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"ranger"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change Rowan into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"knight"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make Zara a knight.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Nora as a knight.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"knight"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Update Zara to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"villain"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change Kael into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create Rowan, a scholar.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"scholar"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Finn into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"mage"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Finn as a ranger.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"ranger"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create Zara, a knight.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Update Mira to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Update Nora to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"scholar"}}
+{"user":"Make Lyra a healer.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"healer"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Introduce Orin as a knight.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"knight"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Lyra a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"scholar"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create Orin, a warrior.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"warrior"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Zara a healer.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"healer"}}
+{"user":"Make Finn a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"ranger"}}
+{"user":"Create Mira, a villain.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"villain"}}
+{"user":"Add a character named Rowan who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"scholar"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Mira to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Create Kael, a knight.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create Orin, a healer.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"healer"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a character named Rowan who is a villain.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"villain"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create Vex, a villain.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a character named Zara who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Make Arin a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"warrior"}}
+{"user":"Make Finn a mage.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"mage"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Update Mira to be a knight.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"knight"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a character named Rowan who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Add a character named Arin who is a knight.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"knight"}}
+{"user":"Create Kael, a ranger.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"ranger"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Update Arin to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"warrior"}}
+{"user":"Make Talia a healer.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"healer"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Update Vex to be a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"ranger"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Elara a healer.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"healer"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a character named Lyra who is a villain.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"villain"}}
+{"user":"Create Vex, a knight.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"knight"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a character named Mira who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"scholar"}}
+{"user":"Make Rowan a mage.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"mage"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make Darin a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"scholar"}}
+{"user":"Add a character named Darin who is a mage.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"mage"}}
+{"user":"Create Elara, a mage.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"mage"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Mira a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"ranger"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Introduce Mira as a knight.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"knight"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a character named Sera who is a knight.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"knight"}}
+{"user":"Add a character named Vex who is a knight.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"knight"}}
+{"user":"Change Finn into a healer.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"healer"}}
+{"user":"Create Rowan, a ranger.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"ranger"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a character named Finn who is a villain.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"villain"}}
+{"user":"Update Talia to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"warrior"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Introduce Mira as a scholar.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"scholar"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Introduce Elara as a warrior.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"warrior"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make Finn a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"warrior"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create Kael, a scholar.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"scholar"}}
+{"user":"Change Zara into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a character named Elara who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"scholar"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Make Arin a villain.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"villain"}}
+{"user":"Add a character named Vex who is a healer.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"healer"}}
+{"user":"Change Arin into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Arin","role":"mage"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change Finn into a healer.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"healer"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change Nora into a healer.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"healer"}}
+{"user":"Add a character named Mira who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"scholar"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Kael a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"warrior"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Kael a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"warrior"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change Sera into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"knight"}}
+{"user":"Add a character named Orin who is a mage.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"mage"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Nora a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"ranger"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Arin as a healer.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"healer"}}
+{"user":"Update Mira to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"healer"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Elara to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"scholar"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Talia into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"mage"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a character named Elara who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"ranger"}}
+{"user":"Introduce Kael as a mage.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"mage"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a character named Mira who is a mage.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Change Talia into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"knight"}}
+{"user":"Introduce Arin as a warrior.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"warrior"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Change Rowan into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"ranger"}}
+{"user":"Make Finn a knight.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"knight"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Update Darin to be a mage.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"mage"}}
+{"user":"Make Lyra a healer.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"healer"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Darin into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"knight"}}
+{"user":"Update Darin to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"warrior"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a character named Talia who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"ranger"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Kael a mage.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"mage"}}
+{"user":"Update Talia to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"scholar"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a character named Sera who is a knight.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"knight"}}
+{"user":"Create Darin, a knight.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"knight"}}
+{"user":"Change Orin into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"warrior"}}
+{"user":"Make Elara a knight.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"knight"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a character named Darin who is a mage.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"mage"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create Darin, a knight.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"knight"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change Kael into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"mage"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Kael as a healer.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"healer"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Elara into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"villain"}}
+{"user":"Change Elara into a healer.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"healer"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a character named Rowan who is a villain.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"villain"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Finn a villain.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"villain"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Update Kael to be a knight.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change Zara into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"villain"}}
+{"user":"Make Sera a healer.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"healer"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Introduce Zara as a scholar.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"scholar"}}
+{"user":"Change Kael into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"mage"}}
+{"user":"Create Zara, a ranger.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"ranger"}}
+{"user":"Introduce Darin as a scholar.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"scholar"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Zara a healer.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"healer"}}
+{"user":"Update Vex to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"warrior"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Introduce Vex as a knight.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"knight"}}
+{"user":"Update Rowan to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change Finn into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"knight"}}
+{"user":"Add a character named Zara who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"scholar"}}
+{"user":"Add a character named Rowan who is a healer.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"healer"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Introduce Talia as a healer.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"healer"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create Nora, a warrior.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"warrior"}}
+{"user":"Add a character named Zara who is a knight.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Create Nora, a knight.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"knight"}}
+{"user":"Add a character named Rowan who is a mage.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"mage"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Change Vex into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"ranger"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a character named Lyra who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"warrior"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Introduce Lyra as a scholar.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"scholar"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create Mira, a warrior.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"warrior"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Update Vex to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make Zara a knight.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Create Darin, a mage.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"mage"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make Kael a healer.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"healer"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Talia as a healer.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"healer"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change Darin into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"knight"}}
+{"user":"Add a character named Talia who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"scholar"}}
+{"user":"Update Elara to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"villain"}}
+{"user":"Change Zara into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Vex as a warrior.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"warrior"}}
+{"user":"Update Zara to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"scholar"}}
+{"user":"Add a character named Orin who is a mage.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"mage"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create Arin, a ranger.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"ranger"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create Vex, a knight.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"knight"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change Darin into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"villain"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Mira a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"warrior"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create Sera, a healer.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"healer"}}
+{"user":"Make Talia a mage.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"mage"}}
+{"user":"Add a character named Talia who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"ranger"}}
+{"user":"Add a character named Nora who is a villain.","action":{"action":"ADD_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Nora into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"villain"}}
+{"user":"Create Lyra, a scholar.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"scholar"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Change Mira into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"knight"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make Elara a villain.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"villain"}}
+{"user":"Introduce Orin as a scholar.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"scholar"}}
+{"user":"Update Zara to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"scholar"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Update Elara to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"healer"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change Kael into a healer.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"healer"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Change Orin into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"ranger"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Rowan as a villain.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"villain"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Vex a healer.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"healer"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Talia as a healer.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"healer"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make Vex a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"scholar"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Update Elara to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"healer"}}
+{"user":"Introduce Mira as a scholar.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"scholar"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change Finn into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"ranger"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Update Kael to be a knight.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"knight"}}
+{"user":"Change Vex into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"knight"}}
+{"user":"Create Sera, a scholar.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"scholar"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Change Sera into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"ranger"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make Mira a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"scholar"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create Talia, a villain.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"villain"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Create Sera, a scholar.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"scholar"}}
+{"user":"Add a character named Talia who is a warrior.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"warrior"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Rowan a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Update Rowan to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"scholar"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Lyra as a healer.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"healer"}}
+{"user":"Make Orin a villain.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"villain"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create Orin, a scholar.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"scholar"}}
+{"user":"Change Kael into a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Kael","role":"ranger"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a character named Talia who is a villain.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"villain"}}
+{"user":"Introduce Darin as a scholar.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"scholar"}}
+{"user":"Create Mira, a villain.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"villain"}}
+{"user":"Create Orin, a healer.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"healer"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Orin into a mage.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"mage"}}
+{"user":"Update Rowan to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"healer"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make Vex a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"ranger"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Make Finn a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"scholar"}}
+{"user":"Introduce Talia as a healer.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"healer"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create Sera, a healer.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"healer"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make Nora a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"scholar"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Update Vex to be a knight.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"knight"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Make Mira a mage.","action":{"action":"UPDATE_CHARACTER","name":"Mira","role":"mage"}}
+{"user":"Make Talia a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Talia","role":"warrior"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Add a character named Zara who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"scholar"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Create Elara, a villain.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"villain"}}
+{"user":"Make Lyra a knight.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"knight"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Change the plot so the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Create Vex, a villain.","action":{"action":"ADD_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create Sera, a knight.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"knight"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Introduce Orin as a villain.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"villain"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Add a character named Elara who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"ranger"}}
+{"user":"Change Elara into a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"scholar"}}
+{"user":"Make Finn a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"warrior"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Add a character named Arin who is a knight.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"knight"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Add a character named Finn who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"ranger"}}
+{"user":"Add a character named Darin who is a ranger.","action":{"action":"ADD_CHARACTER","name":"Darin","role":"ranger"}}
+{"user":"Create a new chapter titled The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Orin as a warrior.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"warrior"}}
+{"user":"Make Lyra a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"warrior"}}
+{"user":"Create a new chapter titled The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Introduce Lyra as a warrior.","action":{"action":"ADD_CHARACTER","name":"Lyra","role":"warrior"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make Nora a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"ranger"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Add a character named Finn who is a scholar.","action":{"action":"ADD_CHARACTER","name":"Finn","role":"scholar"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Update Rowan to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Rowan","role":"healer"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Introduce Kael as a mage.","action":{"action":"ADD_CHARACTER","name":"Kael","role":"mage"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Introduce Mira as a ranger.","action":{"action":"ADD_CHARACTER","name":"Mira","role":"ranger"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Introduce Talia as a scholar.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"scholar"}}
+{"user":"Add a chapter called The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Introduce Rowan as a warrior.","action":{"action":"ADD_CHARACTER","name":"Rowan","role":"warrior"}}
+{"user":"Make Zara a knight.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"knight"}}
+{"user":"Update Vex to be a villain.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"villain"}}
+{"user":"Update Finn to be a healer.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"healer"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Introduce Orin as a healer.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"healer"}}
+{"user":"Change the plot so the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Make Sera a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Sera","role":"warrior"}}
+{"user":"Introduce Sera as a villain.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"villain"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create a new chapter titled The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Create Talia, a healer.","action":{"action":"ADD_CHARACTER","name":"Talia","role":"healer"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Update Vex to be a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"scholar"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Change Lyra into a villain.","action":{"action":"UPDATE_CHARACTER","name":"Lyra","role":"villain"}}
+{"user":"Add a chapter called The Discovery.","action":{"action":"ADD_CHAPTER","title":"The Discovery"}}
+{"user":"Update Elara to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"warrior"}}
+{"user":"Revert my last edit.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Change Darin into a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Darin","role":"warrior"}}
+{"user":"Change Orin into a knight.","action":{"action":"UPDATE_CHARACTER","name":"Orin","role":"knight"}}
+{"user":"Add a chapter called The Betrayal.","action":{"action":"ADD_CHAPTER","title":"The Betrayal"}}
+{"user":"Create Arin, a mage.","action":{"action":"ADD_CHARACTER","name":"Arin","role":"mage"}}
+{"user":"Update Finn to be a warrior.","action":{"action":"UPDATE_CHARACTER","name":"Finn","role":"warrior"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
+{"user":"Make Vex a ranger.","action":{"action":"UPDATE_CHARACTER","name":"Vex","role":"ranger"}}
+{"user":"Update Elara to be a knight.","action":{"action":"UPDATE_CHARACTER","name":"Elara","role":"knight"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Make Zara a scholar.","action":{"action":"UPDATE_CHARACTER","name":"Zara","role":"scholar"}}
+{"user":"Change the plot so the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Create a new chapter titled The Escape.","action":{"action":"ADD_CHAPTER","title":"The Escape"}}
+{"user":"Introduce Orin as a healer.","action":{"action":"ADD_CHARACTER","name":"Orin","role":"healer"}}
+{"user":"Create Zara, a mage.","action":{"action":"ADD_CHARACTER","name":"Zara","role":"mage"}}
+{"user":"Create Sera, a mage.","action":{"action":"ADD_CHARACTER","name":"Sera","role":"mage"}}
+{"user":"Change the plot so the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Undo that change.","action":{"action":"UNDO"}}
+{"user":"Introduce Elara as a mage.","action":{"action":"ADD_CHARACTER","name":"Elara","role":"mage"}}
+{"user":"Undo the last action.","action":{"action":"UNDO"}}
+{"user":"Update Nora to be a knight.","action":{"action":"UPDATE_CHARACTER","name":"Nora","role":"knight"}}
+{"user":"Make the storyline about how the heroes escape.","action":{"action":"SET_PLOT","plot":"the heroes escape"}}
+{"user":"Make the storyline about how the dragon awakens.","action":{"action":"SET_PLOT","plot":"the dragon awakens"}}
+{"user":"Make the storyline about how the crown is stolen.","action":{"action":"SET_PLOT","plot":"the crown is stolen"}}
+{"user":"Add a chapter called The Battle.","action":{"action":"ADD_CHAPTER","title":"The Battle"}}
+{"user":"Make the storyline about how the kingdom falls.","action":{"action":"SET_PLOT","plot":"the kingdom falls"}}
