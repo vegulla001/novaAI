@@ -70,6 +70,40 @@ class StoryManager:
                 for name in names
             ):
                 chapter['needs_revision'] = True
+    def save_generated_chapter(
+        self,
+        story,
+        title,
+        content,
+        characters=None,
+    ):
+        import copy
+
+        if not content.strip():
+            return "Generated chapter is empty."
+
+        story["undo_stack"].append(
+            copy.deepcopy({
+                key: story[key]
+                for key in ("characters", "plot", "chapters")
+            })
+        )
+
+        story["chapters"].append({
+            "title": title,
+            "content": content,
+            "characters": characters or [],
+            "needs_revision": False,
+        })
+
+        story["history"].append({
+            "action": "GENERATE_CHAPTER",
+            "title": title,
+        })
+
+        self.save(story)
+
+        return f"Chapter '{title}' generated and saved."
 
     def apply(self, story, action):
         kind = action.get('action')
