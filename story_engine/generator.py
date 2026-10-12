@@ -14,6 +14,7 @@ import torch
 from model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 from generate_novel import sample
+from story_engine.validator import ChapterValidator
 
 
 class StoryGenerator:
@@ -129,6 +130,74 @@ class StoryGenerator:
 
         return "\n".join(formatted)
 
+    def generate_validated_chapter(
+        self,
+        story,
+        chapter_number,
+        instruction,
+        required_characters=None,
+        required_keywords=None,
+        tokens=400,
+        max_attempts=3,
+    ):
+        validator = ChapterValidator()
+
+        best_content = ""
+        best_result = None
+
+        for attempt in range(1, max_attempts + 1):
+
+            print(
+                f"Generation attempt "
+                f"{attempt}/{max_attempts}"
+            )
+
+            content = self.generate_chapter(
+                story=story,
+                chapter_number=chapter_number,
+                instruction=instruction,
+                tokens=tokens,
+                temperature=0.65,
+                top_k=30,
+            )
+
+            result = validator.validate(
+                content=content,
+                required_characters=required_characters,
+                required_keywords=required_keywords,
+            )
+
+            print(
+                f"Validation score: {result.score:.2f}"
+            )
+
+            if result.valid:
+                return {
+                    "success": True,
+                    "content": content,
+                    "validation": result,
+                    "attempts": attempt,
+                }
+
+            if (
+                best_result is None
+                or result.score > best_result.score
+            ):
+                best_content = content
+                best_result = result
+
+            print("Validation issues:")
+
+            for issue in result.issues:
+                print(f" - {issue}")
+
+        return {
+            "success": False,
+            "content": best_content,
+            "validation": best_result,
+            "attempts": max_attempts,
+        }
+
     def _get_previous_context(
         self,
         story: dict[str, Any],
@@ -155,46 +224,50 @@ class StoryGenerator:
 
     def _build_prompt(
         self,
-        story: dict[str, Any],
-        chapter_number: int,
-        instruction: str,
-    ) -> str:
-        """Build a structured prompt for the V8 model."""
-
+        story,
+        chapter_number,
+        instruction,
+    ):
         title = story.get("title", "Untitled")
 
         premise = (
             story.get("premise")
             or story.get("plot")
-            or f"A story titled {title}."
+            or "An original fantasy adventure."
         )
 
         characters = self._format_characters(story)
 
-        previous = self._get_previous_context(story)
+        # Use only a short excerpt of previous chapters.
+        previous = self._get_previous_context(
+            story,
+            max_chars=250,
+        )
 
         sections = [
             "<INSTRUCTION>",
-            "Write a story chapter as narrative prose.",
             f"Title: {title}",
             f"Premise: {premise}",
+            f"Chapter: {chapter_number}",
+            f"Scene: {instruction}",
         ]
 
-        if story.get("plot"):
-            sections.append(f"Current plot: {story['plot']}")
-
         if characters:
-            sections.append(f"Characters:\n{characters}")
-
-        sections.append(
-            f"Chapter {chapter_number}: {instruction}"
-        )
+            sections.append(
+                f"Characters:\n{characters}"
+            )
 
         if previous:
-            sections.append(f"Previously:\n{previous}")
+            sections.append(
+                f"Previous events: {previous}"
+            )
 
         sections.extend([
-            "Write only the scene, not character profiles or metadata.",
+            "Write a continuous fictional scene.",
+            "Follow the scene instruction.",
+            "Use the established characters.",
+            "Write narrative prose with dialogue and action.",
+            "Do not write character profiles.",
             "<STORY>",
             "",
         ])
