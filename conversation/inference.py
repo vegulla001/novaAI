@@ -44,19 +44,83 @@ class ConversationAI:
 
         if re.fullmatch(r'(?:undo|undo that(?: change)?|undo the last (?:action|change)|revert my last edit)[.! ]*', msg, re.I):
             return {'action': 'UNDO'}
+        # ------------------------------------------
+        # ADD CHARACTER
+        # ------------------------------------------
 
-        m = re.fullmatch(r'(?:add|create|introduce)(?: a| an| new)?(?: character)?(?: named| called)?\s+(' + NAME + r')\s+(?:who is|as|,?\s*a|,?\s*an)\s+(?:a\s+|an\s+)?(?:powerful\s+|mysterious\s+|young\s+|brave\s+|evil\s+)*(' + ROLE + r')[.! ]*', msg, re.I)
-        if m:
-            name, role = m.group(1).strip(), m.group(2).lower()
-            self.last_character = name
-            return {'action': 'ADD_CHARACTER', 'name': name, 'role': role}
+        m = re.fullmatch(
+            r'(?:add|create|introduce)\s+'
+            r'(?:(?:a|an|new)\s+)*'
+            r'(?:character\s+)?'
+            r'(?:(?:named|called)\s+)?'
+            r'(' + NAME + r')\s+'
+            r'(?:who\s+is|as|is)\s+'
+            r'(?:(?:a|an)\s+)?'
+            r'(?:(?:powerful|mysterious|young|brave|evil)\s+)*'
+            r'(' + ROLE + r')'
+            r'(?:\s+and\s+(?:(?:the|a|an)\s+)?'
+            r'(protagonist|antagonist|main character|supporting character)'
+            r'(?:\s+of\s+the\s+story)?)?'
+            r'[.! ]*',
+            msg,
+            re.I
+        )
 
-        # Additional supported natural wording: 'Add a character named Lyra who is a powerful mage.'
-        m = re.fullmatch(r'(?:add|create|introduce)\s+(?:a\s+|an\s+)?character\s+(?:named|called)\s+(' + NAME + r')\s+who\s+is\s+(?:a\s+|an\s+)?(?:\w+\s+)*?(' + ROLE + r')[.! ]*', msg, re.I)
         if m:
-            name, role = m.group(1), m.group(2).lower()
-            self.last_character = name
-            return {'action': 'ADD_CHARACTER', 'name': name, 'role': role}
+            name = m.group(1).strip()
+            role = m.group(2).lower()
+            story_position = m.group(3)
+
+            action = {
+                'action': 'ADD_CHARACTER',
+                'name': name,
+                'role': role
+            }
+
+            if story_position:
+                action['story_position'] = story_position.lower()
+
+            return action
+        # ------------------------------------------
+        # CHARACTER RELATIONSHIPS
+        # ------------------------------------------
+
+        m = re.fullmatch(
+            r'(?:make|put|place)\s+'
+            r'(' + NAME + r')\s+and\s+'
+            r'(' + NAME + r')\s+'
+            r'(?:(?:as|in|on)\s+)?'
+            r'(?:the\s+)?same\s+team'
+            r'[.! ]*',
+            msg,
+            re.I
+        )
+
+        if m:
+            name1 = m.group(1).strip()
+            name2 = m.group(2).strip()
+
+            character1 = existing.get(name1.casefold())
+            character2 = existing.get(name2.casefold())
+
+            if not character1 or not character2:
+                return {
+                    'action': 'UNRECOGNIZED',
+                    'reason': 'One or both characters do not exist.'
+                }
+
+            if character1.casefold() == character2.casefold():
+                return {
+                    'action': 'UNRECOGNIZED',
+                    'reason': 'Cannot create a team relationship with the same character.'
+                }
+
+            return {
+                'action': 'ADD_RELATIONSHIP',
+                'character1': character1,
+                'character2': character2,
+                'relationship': 'teammates'
+            }
         # --------------------------------------------------
         # UPDATE CHARACTER
         # --------------------------------------------------
