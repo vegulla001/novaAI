@@ -1,34 +1,27 @@
-# StoryAI V6 — Improving Readability (experimental)
+# StoryAI V9 — from-scratch conversational action model (experimental)
 
-This is an original randomly initialized PyTorch Transformer (RoPE, RMSNorm, SwiGLU), not a pretrained model. It does **not** guarantee fluent English or a coherent novel. Four novels are far too few to train a strong novelist from scratch.
+This is a **small domain-specific proof of concept**, not a general chatbot. It trains a new byte-level causal Transformer from random initialization (no pretrained weights, APIs, or external AI). It learns to map short story-editing requests to JSON actions. The deterministic story engine validates and persists actions. It does **not** generate or rewrite chapter prose, support pronoun resolution, or understand arbitrary language yet.
 
-## Changes from V5
-- Genre labels preserved, but genre markers are placed once per book by default instead of every 800 characters. This reduces control-token leakage and artificial mid-sentence interruptions.
-- BPE vocabulary sample is spread across training books rather than drawn entirely from the beginning of the first book.
-- TXT-only novel output, configurable chapter outline, repetition penalty, and removal of visible genre tags.
-- New V6 checkpoint names avoid overwriting V5 checkpoints.
-- Existing V5 validation-loss monitoring, early stopping and best-checkpoint saving retained.
+Requires Python 3.10+ and `torch` (`pip install torch`). Run commands from the directory containing `conversation/` and `story_engine/`:
 
-## Windows PowerShell
-
-```powershell
-python -m pip install -r requirements.txt
+```bash
+python -m conversation.build_dataset --count 12000
+python -m conversation.train --steps 1000 --batch-size 16 --block-size 256
+python -m conversation.chat
 ```
 
-Put your own UTF-8 public-domain novels in `dataset/novels/`, and label **each file** in `dataset/genres.json`. At least two distinct books are needed. Remove demo books or label them if you keep them.
+CPU training can take a long time; for a quick syntax/smoke test run `python -m conversation.train --steps 2 --batch-size 2 --eval-every 1`. A smoke-test checkpoint is not useful for chat.
 
-```powershell
-python prepare_dataset.py --vocab-size 1024 --min-chars 1000 --chunk-chars 0
-python train.py --steps 2000 --batch-size 4 --grad-accum 4 --block-size 128 --n-layer 4 --n-head 4 --n-embd 128 --dropout 0.1 --eval-every 100 --amp off --patience 10
-python generate_novel.py --genres ACTION ADVENTURE --title "The Lost Kingdom" --premise "A warrior searches for a lost kingdom" --chapters 3 --tokens-per-chapter 300 --outline-file chapter_outline.txt --output output/lost_kingdom.txt
+Chat commands:
+
+```
+/new The Lost Kingdom
+Add a character named Lyra who is a mage.
+Make Lyra a villain.
+Add a chapter called The Betrayal.
+Undo the last action.
+/show
+/quit
 ```
 
-Best weights: `checkpoints/storyai_v6_best.pt`. Latest resumable state: `checkpoints/storyai_v6.pt`.
-
-**Do not use `--resume` with V4/V5 checkpoints after regenerating the tokenizer.** The token-ID mapping changes. Keep your old checkpoints and tokenizer backed up. Increasing context or model size also requires a new run or an explicitly designed migration.
-
-## What to expect
-
-Training 2,000 steps on four books will likely produce misspellings and weak coherence. Better generation needs much more clean text, an appropriate vocabulary, and enough compute. A 128-token context cannot remember an entire chapter or novel. The outline is a prompt, not a reliable long-term memory system.
-
-For an honest quality check, generate 100–200 tokens every few hundred steps and compare outputs. Monitor held-out validation loss. A good-looking text file is not proof that the model can write a novel.
+Caveats: synthetic dataset is small and formulaic, and random row splitting leaks near-identical templates between training and validation. Reported validation loss is **not** a measure of robust language understanding. A low loss does not imply generalization. The model may output malformed JSON or incorrect actions; the engine only accepts a fixed allowlist and validates fields. Review `Action >` before trusting edits. Story data is saved to `stories/`. For serious use, add human confirmation, broader data, entity resolution, per-story context, tests on unseen templates, and narrative prose training.
