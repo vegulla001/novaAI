@@ -2,6 +2,7 @@ import argparse
 
 from .inference import ConversationAI
 from story_engine.manager import StoryManager
+from nlu.inference import StoryNLU
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
 
     manager = StoryManager()
     ai = ConversationAI(args.checkpoint)
+    nlu = StoryNLU()
 
     print(
         'StoryAI V9 chat. Commands: '
@@ -69,9 +71,20 @@ def main():
             print('StoryAI > First use /new Your Story Title')
             continue
 
-        action = ai.interpret(msg, story)
+        action = nlu.interpret(
+            msg,
+            story,
+            last_character=ai.last_character
+        )
 
         print('Action >', action)
+
+        if action.get('action') == 'UNRECOGNIZED':
+            print(
+                'StoryAI >',
+                action.get('reason', 'I could not understand that instruction.')
+            )
+            continue
 
         result = manager.apply(story, action)
 
