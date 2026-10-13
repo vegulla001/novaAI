@@ -1,4 +1,4 @@
-"""CPU-only StoryAI V12 controlled pilot; preserves original checkpoints."""
+"""CPU-only V12 plan+story supervision experiment. Does not overwrite checkpoints."""
 import argparse
 import hashlib
 import json
@@ -9,6 +9,7 @@ from pathlib import Path
 import torch
 from model import GPT, GPTConfig
 from tokenizer import BPETokenizer
+from training.v12.plan_training import build_example, instruction_for, plan_for
 
 
 def records(path):
@@ -16,56 +17,21 @@ def records(path):
         return [json.loads(line) for line in f if line.strip()]
 
 
-def prompt_for(r):
-    genres = ', '.join(str(g).upper() for g in r['genres'])
-    return (f'<INSTRUCTION>\nWrite a {genres} story as narrative prose.\n'
-            f'Title: {r["title"]}\nPremise: {r["premise"]}\n'
-            f'Characters: {", ".join(r["characters"])}\nChapter 1:\n'
-            'Write only the scene as narrative prose.\n<STORY>\n')
-
-
-def pack(r, tokenizer, max_context):
-    prompt_ids = tokenizer.encode(prompt_for(r))
-    story_ids = tokenizer.encode(r['story'] + '\n<END_STORY>')
-    ids = prompt_ids + story_ids
-    # One additional token is needed to build shifted x/y pairs.
-    if len(ids) > max_context + 1:
-        raise ValueError(f'{r["title"]}: {len(ids)} tokens exceed maximum {max_context + 1}')
-    if not prompt_ids or not story_ids:
-        raise ValueError(f'{r["title"]}: empty prompt or story')
-    x = torch.tensor(ids[:-1], dtype=torch.long).unsqueeze(0)
-    y = torch.tensor(ids[1:], dtype=torch.long).unsqueeze(0)
-    # Position len(prompt_ids)-1 predicts the FIRST story token and is supervised.
-    y[:, :len(prompt_ids) - 1] = -1
-    supervised = y.ne(-1)
-    if not supervised.any():
-        raise AssertionError('No supervised story tokens')
-    # Every supervised target except the last must equal the NEXT input token.
-    assert torch.equal(y[:, :-1][supervised[:, :-1]],
-                       x[:, 1:][supervised[:, :-1]]), 'Next-token alignment failed'
-    return x, y
-
-
-def loss_on(model, samples):
+def losses(model, samples):
     model.eval()
-    weighted_loss = 0.0
-    count = 0
+    totals = [0.0, 0.0]
     with torch.no_grad():
-        for x, y in samples:
-            _, loss = model(x, y)
-            n = int(y.ne(-1).sum().item())
-            weighted_loss += float(loss.item()) * n
-            count += n
-    return weighted_loss / count
+        for x, plan_y, story_y in samples:
+            totals[0] += float(model(x, plan_y)[1])
+            totals[1] += float(model(x, story_y)[1])
+    return {'plan': totals[0] / len(samples), 'story': totals[1] / len(samples)}
 
 
-def generate(model, tokenizer, r, context, max_new, temperature, top_k):
+def sample_completion(model, tokenizer, prefix_ids, context, max_new, temperature, top_k):
+    ids = list(prefix_ids)
+    generated = []
+    end_ids = tokenizer.encode('<END_STORY>')
     model.eval()
-    prompt_ids = tokenizer.encode(prompt_for(r))
-    if len(prompt_ids) >= context:
-        raise ValueError('Prompt longer than context')
-    ids = list(prompt_ids)
-    eos = tokenizer.encode('<END_STORY>')
     with torch.no_grad():
         for _ in range(max_new):
             idx = torch.tensor(ids[-context:], dtype=torch.long).unsqueeze(0)
@@ -73,45 +39,60 @@ def generate(model, tokenizer, r, context, max_new, temperature, top_k):
             next_logits = logits[0, -1].float() / temperature
             k = min(top_k, next_logits.numel())
             threshold = torch.topk(next_logits, k).values[-1]
-            next_logits = next_logits.masked_fill(next_logits < threshold, float('-inf'))
-            probabilities = torch.softmax(next_logits, dim=-1)
-            token = int(torch.multinomial(probabilities, 1).item())
+            next_logits[next_logits < threshold] = float('-inf')
+            probs = torch.softmax(next_logits, dim=-1)
+            token = int(torch.multinomial(probs, 1).item())
             ids.append(token)
-            if eos and ids[-len(eos):] == eos:
+            generated.append(token)
+            if len(generated) >= len(end_ids) and generated[-len(end_ids):] == end_ids:
                 break
-    return tokenizer.decode(ids[len(prompt_ids):]).split('<END_STORY>')[0].strip()
+    return tokenizer.decode(generated).split('<END_STORY>')[0].strip()
 
 
-def score_names(text, r):
-    return {name: bool(re.search(r'(?<!\w)' + re.escape(name) + r'(?!\w)', text, re.I))
-            for name in r['characters']}
+def generate_story(model, tokenizer, record, context, max_new, temperature, top_k):
+    # Use the VERIFIED plan rather than an unreliable generated plan.
+    # Segment encoding must match build_example() exactly.
+    prefix = (tokenizer.encode(instruction_for(record))
+              + tokenizer.encode(plan_for(record))
+              + tokenizer.encode('<STORY>\n'))
+    if len(prefix) >= context:
+        raise ValueError('Prompt exceeds model context')
+    return sample_completion(model, tokenizer, prefix, context, max_new, temperature, top_k)
+
+
+def character_mentions(story, record):
+    return {name: bool(re.search(r'(?<!\w)' + re.escape(name) + r'(?!\w)', story, re.I))
+            for name in record['characters']}
 
 
 def main():
-    a = argparse.ArgumentParser()
-    a.add_argument('--checkpoint', default='checkpoints/storyai_v8_best.pt')
-    a.add_argument('--tokenizer', default='dataset/processed/tokenizer.json')
-    a.add_argument('--data-dir', default='dataset/v12/pilot_expanded')
-    a.add_argument('--output-dir', default='output/v12_controlled_experiment_fixed')
-    a.add_argument('--steps', type=int, default=10)
-    a.add_argument('--lr', type=float, default=1e-5)
-    a.add_argument('--max-new-tokens', type=int, default=180)
-    a.add_argument('--seed', type=int, default=42)
-    args = a.parse_args()
-    if args.steps < 0 or args.lr <= 0:
-        raise ValueError('steps must be >= 0 and learning rate > 0')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--checkpoint', default='checkpoints/storyai_v8_best.pt')
+    parser.add_argument('--tokenizer', default='dataset/processed/tokenizer.json')
+    parser.add_argument('--data-dir', default='dataset/v12/pilot_expanded')
+    parser.add_argument('--output-dir', default='output/v12_plan_story_experiment')
+    parser.add_argument('--steps', type=int, default=20)
+    parser.add_argument('--lr', type=float, default=1e-5)
+    parser.add_argument('--plan-weight', type=float, default=1.0)
+    parser.add_argument('--story-weight', type=float, default=1.0)
+    parser.add_argument('--max-new-tokens', type=int, default=200)
+    parser.add_argument('--temperature', type=float, default=0.7)
+    parser.add_argument('--top-k', type=int, default=20)
+    parser.add_argument('--seed', type=int, default=42)
+    args = parser.parse_args()
+    if args.steps < 1 or args.lr <= 0 or args.temperature <= 0 or args.top_k < 1:
+        parser.error('steps, lr, temperature and top-k must be positive')
+    if args.plan_weight < 0 or args.story_weight < 0 or args.plan_weight + args.story_weight == 0:
+        parser.error('loss weights must be nonnegative with positive sum')
     torch.set_num_threads(max(1, min(torch.get_num_threads(), 4)))
     random.seed(args.seed)
     torch.manual_seed(args.seed)
-    out = Path(args.output_dir)
-    out.mkdir(parents=True, exist_ok=True)
     tokenizer_path = Path(args.tokenizer)
     tokenizer = BPETokenizer.load(str(tokenizer_path))
     ckpt = torch.load(args.checkpoint, map_location='cpu', weights_only=False)
-    expected_hash = ckpt.get('tokenizer_sha256')
-    actual_hash = hashlib.sha256(tokenizer_path.read_bytes()).hexdigest()
-    if expected_hash and expected_hash != actual_hash:
-        raise ValueError('Tokenizer SHA256 mismatch: refusing experiment')
+    expected = ckpt.get('tokenizer_sha256')
+    if expected and hashlib.sha256(tokenizer_path.read_bytes()).hexdigest() != expected:
+        raise ValueError('Tokenizer SHA256 mismatch')
     config = ckpt['config']
     if isinstance(config, dict):
         config = GPTConfig(**config)
@@ -120,53 +101,52 @@ def main():
     train = records(Path(args.data_dir) / 'train.jsonl')
     val = records(Path(args.data_dir) / 'val.jsonl')
     if not train or not val:
-        raise ValueError('Empty train/validation split')
+        raise ValueError('Empty training or validation split')
     if {r['source_family'] for r in train} & {r['source_family'] for r in val}:
-        raise ValueError('Source-family leakage between train and validation')
-    train_samples = [pack(r, tokenizer, config.block_size) for r in train]
-    val_samples = [pack(r, tokenizer, config.block_size) for r in val]
-    print('PASS: shifted next-token targets and story-only masking')
-    print('Model loaded. Train:', len(train), 'Validation:', len(val))
-    before_loss = loss_on(model, val_samples)
-    print(f'Before validation loss: {before_loss:.4f}')
+        raise ValueError('Training/validation source-family overlap')
+    train_samples = [build_example(r, tokenizer, config.block_size) for r in train]
+    val_samples = [build_example(r, tokenizer, config.block_size) for r in val]
+    print('PASS: shifted targets, separate plan/story masks, verified-plan generation')
+    print(f'Train: {len(train)} | Validation: {len(val)} | Test: untouched')
+    before_loss = losses(model, val_samples)
+    print('Validation BEFORE:', before_loss)
     before = []
     for r in val:
-        story = generate(model, tokenizer, r, config.block_size, args.max_new_tokens, .7, 20)
-        before.append({'title': r['title'], 'generated_story': story,
-                       'character_mentions': score_names(story, r)})
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=.01)
+        s = generate_story(model, tokenizer, r, config.block_size, args.max_new_tokens, args.temperature, args.top_k)
+        before.append({'title': r['title'], 'generated_story': s, 'character_mentions': character_mentions(s, r)})
+    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
     for step in range(1, args.steps + 1):
         model.train()
-        x, y = train_samples[(step - 1) % len(train_samples)]
+        x, plan_y, story_y = train_samples[(step - 1) % len(train_samples)]
         optimizer.zero_grad(set_to_none=True)
-        _, loss = model(x, y)
-        if not torch.isfinite(loss):
-            raise RuntimeError(f'Non-finite training loss at step {step}')
+        _, lp = model(x, plan_y)
+        _, ls = model(x, story_y)
+        loss = args.plan_weight * lp + args.story_weight * ls
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
         if step == 1 or step % 10 == 0 or step == args.steps:
-            print(f'Step {step}/{args.steps} train loss: {loss.item():.4f}')
-    after_loss = loss_on(model, val_samples)
-    print(f'After validation loss: {after_loss:.4f}')
+            print(f'Step {step}/{args.steps} | plan={lp.item():.4f} story={ls.item():.4f}')
+    after_loss = losses(model, val_samples)
+    print('Validation AFTER:', after_loss)
     after = []
     for r in val:
-        story = generate(model, tokenizer, r, config.block_size, args.max_new_tokens, .7, 20)
-        after.append({'title': r['title'], 'generated_story': story,
-                      'character_mentions': score_names(story, r)})
-    result = {'note': 'Small CPU pilot; do not infer production instruction adherence.',
-              'train_examples': len(train), 'val_examples': len(val), 'steps': args.steps,
-              'lr': args.lr, 'target_alignment': 'shifted_next_token',
-              'validation_loss_before': before_loss, 'validation_loss_after': after_loss,
-              'before': before, 'after': after,
+        s = generate_story(model, tokenizer, r, config.block_size, args.max_new_tokens, args.temperature, args.top_k)
+        after.append({'title': r['title'], 'generated_story': s, 'character_mentions': character_mentions(s, r)})
+    out = Path(args.output_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    report = {'status': 'small_pilot_not_production', 'train_examples': len(train), 'val_examples': len(val),
+              'steps': args.steps, 'lr': args.lr, 'loss_weights': {'plan': args.plan_weight, 'story': args.story_weight},
+              'validation_before': before_loss, 'validation_after': after_loss,
+              'generation_uses_verified_plan': True, 'before': before, 'after': after,
               'manual_review_required': ['setting', 'objective', 'obstacle', 'outcome', 'coherence']}
-    (out / 'report.json').write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding='utf-8')
+    (out / 'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     for phase, items in [('before', before), ('after', after)]:
-        for idx, item in enumerate(items):
+        for i, item in enumerate(items, 1):
             slug = re.sub(r'[^a-z0-9]+', '_', item['title'].lower()).strip('_')
-            (out / f'{phase}_{idx+1}_{slug}.txt').write_text(item['generated_story'], encoding='utf-8')
+            (out / f'{phase}_{i}_{slug}.txt').write_text(item['generated_story'], encoding='utf-8')
     print('Saved:', out / 'report.json')
-    print('No model checkpoint saved; V8 unchanged.')
+    print('No model checkpoint saved. V8 unchanged.')
 
 
 if __name__ == '__main__':
