@@ -1,0 +1,2 @@
+# Install PyTorch with the CUDA build provided by your GPU rental image first.
+numpy>=1.24,<3

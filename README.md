@@ -1,27 +1,26 @@
-# StoryAI V9 — from-scratch conversational action model (experimental)
+# StoryAI V13: real context length upgrade
 
-This is a **small domain-specific proof of concept**, not a general chatbot. It trains a new byte-level causal Transformer from random initialization (no pretrained weights, APIs, or external AI). It learns to map short story-editing requests to JSON actions. The deterministic story engine validates and persists actions. It does **not** generate or rewrite chapter prose, support pronoun resolution, or understand arbitrary language yet.
+Your V8 checkpoint was trained at **512 tokens**. This patch increases the **context window** to **1024** (or **2048**) using the existing RoPE architecture. The token vocabulary stays the same; do **not** change the tokenizer. Context length is different from maximum generated output length.
 
-Requires Python 3.10+ and `torch` (`pip install torch`). Run commands from the directory containing `conversation/` and `story_engine/`:
+The patch is an **independent continuation experiment**, not a claim that novel quality is fixed. No weights are downloaded. V8 and V12 checkpoints are not overwritten.
 
-```bash
-python -m conversation.build_dataset --count 12000
-python -m conversation.train --steps 1000 --batch-size 16 --block-size 256
-python -m conversation.chat
+## Install
+
+Copy `training/v13/train_long_context.py` into the same path in your project. Keep your original `model.py` unchanged.
+
+## Train with longer context (PowerShell, from project root)
+
+```powershell
+python -m training.v13.train_long_context --block-size 1024 --steps 1000 --batch-size 2 --grad-accum 8
 ```
 
-CPU training can take a long time; for a quick syntax/smoke test run `python -m conversation.train --steps 2 --batch-size 2 --eval-every 1`. A smoke-test checkpoint is not useful for chat.
+For a GPU with sufficient VRAM, try `--block-size 2048 --batch-size 1 --grad-accum 16`. A 2048-token sequence needs much more memory/time than 512. On CPU, test with `--steps 2 --batch-size 1 --grad-accum 1` first.
 
-Chat commands:
+Input: `checkpoints/storyai_v8_best.pt` and `dataset/processed/{train.npy,val.npy,tokenizer.json}`.
+Output: `checkpoints/storyai_v13_long_context.pt`, `output/v13_long_context/report.json`.
 
-```
-/new The Lost Kingdom
-Add a character named Lyra who is a mage.
-Make Lyra a villain.
-Add a chapter called The Betrayal.
-Undo the last action.
-/show
-/quit
-```
+**Critical:** RoPE allows extending the context *structurally* without changing weight tensor sizes, but useful long-range attention must be learned with continued training. Merely setting block_size=2048 does not give 2048-token comprehension.
 
-Caveats: synthetic dataset is small and formulaic, and random row splitting leaks near-identical templates between training and validation. Reported validation loss is **not** a measure of robust language understanding. A low loss does not imply generalization. The model may output malformed JSON or incorrect actions; the engine only accepts a fixed allowlist and validates fields. Review `Action >` before trusting edits. Story data is saved to `stories/`. For serious use, add human confirmation, broader data, entity resolution, per-story context, tests on unseen templates, and narrative prose training.
+This uses the original token streams, not the 16 authored scenes. Training data quality, model capacity (7.47M parameters), and instruction-following remain separate problems. For chapter generation, plan scenes and carry forward a compact story bible; a 2048-token context is not an entire novel.
+
+If `dataset/processed/train.npy` is missing, restore your V8 training token arrays; don't substitute token arrays made using a different tokenizer.
