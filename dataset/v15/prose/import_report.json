@@ -1,0 +1,12 @@
+{
+  "train_records": 13566,
+  "val_records": 1693,
+  "train_books": 34,
+  "val_books": 5,
+  "added_segments": {
+    "train": 2455,
+    "val": 245
+  },
+  "skipped_manifest_rows": [],
+  "note": "Whitespace cleanup and exact segment dedup only; manually remove front matter and check near duplicates and licensing."
+}

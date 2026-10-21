@@ -1,0 +1,31 @@
+{
+  "vocab_size": 8192,
+  "tokenizer_sha256": "a9d379df209b1b28194d9ae5314a86fcc52043568402fb39d791290823a34115",
+  "train_book_count": 28,
+  "val_book_count": 4,
+  "book_overlap": 0,
+  "special_tokens": {
+    "<pad>": 0,
+    "<bos>": 1,
+    "<eos>": 2,
+    "<unk>": 3,
+    "<story>": 4,
+    "<chapter>": 5,
+    "<scene>": 6,
+    "<end_scene>": 7
+  },
+  "splits": {
+    "train": {
+      "records": 11111,
+      "tokens": 4638768,
+      "file": "dataset\\v15\\tokenizer\\train.npy",
+      "sha256": "3e88a1b94dc96d6d66e162d7cc787276f7d2eac1380974b6ae89ed326c0a7fd2"
+    },
+    "val": {
+      "records": 1448,
+      "tokens": 619966,
+      "file": "dataset\\v15\\tokenizer\\val.npy",
+      "sha256": "2b2b062c26d1838d669dbe15d2cfb88f1f6b928ef72ba807be58faf4d239b8a4"
+    }
+  }
+}

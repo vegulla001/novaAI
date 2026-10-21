@@ -1,0 +1,18 @@
+book_id,title,file_path,source_url,license,approved,split
+new_dracula,Dracula,books/dracula.txt,https://www.gutenberg.org/,verified,False,train
+new_middlemarch,Middlemarch,books/middle_march.txt,https://www.gutenberg.org/,verified,True,train
+new_odyssey,The Odyssey,books/odyssey.txt,https://www.gutenberg.org/,verified,True,train
+new_pride,Pride and Prejudice,books/pride_prejudice.txt,https://www.gutenberg.org/,verified,False,train
+new_romeo,Romeo and Juliet,books/romeo_juliet.txt,https://www.gutenberg.org/,verified,True,train
+new_sherlock,Sherlock Holmes,books/sherlock_holmes.txt,https://www.gutenberg.org/,verified,False,val
+new_whale,Moby Dick,books/the_whale.txt,https://www.gutenberg.org/,verified,False,train
+new_jungle,The Jungle Book,books/jungle_book.txt,https://www.gutenberg.org/ebooks/236,verified,True,train
+war_and_peace,War and Peace,books/war_and_peace.txt,https://www.gutenberg.org/ebooks/2600,verified,True,train
+new_alice_adventure,Alice's Adventures in Wonderland,books/alice_adventure.txt,https://www.gutenberg.org/ebooks/11,verified,False,train
+new_secret_chimney,The Secret of Chimneys,books/secret_chimney.txt,https://www.gutenberg.org/ebooks/65238,verified,True,train
+new_time_machine,The Time Machine,books/time_machine.txt,https://www.gutenberg.org/ebooks/35,verified,False,train
+pg_12,Through the Looking-Glass,cleaned/pg_12.txt,https://www.gutenberg.org/ebooks/12,verified,False,train
+pg_24,O Pioneers!,cleaned/pg_24.txt,https://www.gutenberg.org/ebooks/24,verified,False,train
+pg_27,Far from the Madding Crowd,cleaned/pg_27.txt,https://www.gutenberg.org/ebooks/27,verified,False,train
+pg_32,Herland,cleaned/pg_32.txt,https://www.gutenberg.org/ebooks/32,verified,False,train
+pg_33,The Scarlet Letter,cleaned/pg_33.txt,https://www.gutenberg.org/ebooks/33,verified,False,train

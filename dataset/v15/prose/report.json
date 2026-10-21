@@ -1,0 +1,220 @@
+{
+  "source": "/mnt/data/storyai_v15_prepared/source_prose_segments.jsonl",
+  "method": "NFC, illustration marker removal, whitespace normalization, exact normalized deduplication; book-level seeded holdout",
+  "seed": 42,
+  "segments_kept": 12559,
+  "excluded": {},
+  "books": 32,
+  "train": {
+    "segments": 11111,
+    "books": [
+      "11",
+      "120",
+      "1259",
+      "1260",
+      "1342",
+      "1400",
+      "1497",
+      "158",
+      "16",
+      "16328",
+      "1661",
+      "174",
+      "203",
+      "209",
+      "2591",
+      "2701",
+      "345",
+      "35",
+      "36",
+      "43",
+      "46",
+      "521",
+      "730",
+      "74",
+      "76",
+      "768",
+      "84",
+      "996"
+    ],
+    "characters": 18283992
+  },
+  "val": {
+    "segments": 1448,
+    "books": [
+      "105",
+      "514",
+      "55",
+      "98"
+    ],
+    "characters": 2412478
+  },
+  "source_books": {
+    "11": {
+      "title": "Alice’s Adventures in Wonderland",
+      "genre": "fantasy",
+      "source_url": "https://www.gutenberg.org/ebooks/11.txt.utf-8"
+    },
+    "84": {
+      "title": "Frankenstein",
+      "genre": "horror",
+      "source_url": "https://www.gutenberg.org/ebooks/84.txt.utf-8"
+    },
+    "1342": {
+      "title": "Pride and Prejudice",
+      "genre": "romance",
+      "source_url": "https://www.gutenberg.org/ebooks/1342.txt.utf-8"
+    },
+    "1661": {
+      "title": "The Adventures of Sherlock Holmes",
+      "genre": "mystery",
+      "source_url": "https://www.gutenberg.org/ebooks/1661.txt.utf-8"
+    },
+    "2701": {
+      "title": "Moby Dick",
+      "genre": "adventure",
+      "source_url": "https://www.gutenberg.org/ebooks/2701.txt.utf-8"
+    },
+    "98": {
+      "title": "A Tale of Two Cities",
+      "genre": "historical fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/98.txt.utf-8"
+    },
+    "345": {
+      "title": "Dracula",
+      "genre": "horror",
+      "source_url": "https://www.gutenberg.org/ebooks/345.txt.utf-8"
+    },
+    "174": {
+      "title": "The Picture of Dorian Gray",
+      "genre": "horror",
+      "source_url": "https://www.gutenberg.org/ebooks/174.txt.utf-8"
+    },
+    "76": {
+      "title": "Adventures of Huckleberry Finn",
+      "genre": "adventure",
+      "source_url": "https://www.gutenberg.org/ebooks/76.txt.utf-8"
+    },
+    "1400": {
+      "title": "Great Expectations",
+      "genre": "historical fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/1400.txt.utf-8"
+    },
+    "55": {
+      "title": "The Wonderful Wizard of Oz",
+      "genre": "fantasy",
+      "source_url": "https://www.gutenberg.org/ebooks/55.txt.utf-8"
+    },
+    "120": {
+      "title": "Treasure Island",
+      "genre": "adventure",
+      "source_url": "https://www.gutenberg.org/ebooks/120.txt.utf-8"
+    },
+    "35": {
+      "title": "The Time Machine",
+      "genre": "science fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/35.txt.utf-8"
+    },
+    "36": {
+      "title": "The War of the Worlds",
+      "genre": "science fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/36.txt.utf-8"
+    },
+    "1260": {
+      "title": "Jane Eyre",
+      "genre": "romance",
+      "source_url": "https://www.gutenberg.org/ebooks/1260.txt.utf-8"
+    },
+    "514": {
+      "title": "Little Women",
+      "genre": "historical fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/514.txt.utf-8"
+    },
+    "2591": {
+      "title": "Grimms’ Fairy Tales",
+      "genre": "fantasy",
+      "source_url": "https://www.gutenberg.org/ebooks/2591.txt.utf-8"
+    },
+    "43": {
+      "title": "The Strange Case of Dr Jekyll and Mr Hyde",
+      "genre": "horror",
+      "source_url": "https://www.gutenberg.org/ebooks/43.txt.utf-8"
+    },
+    "730": {
+      "title": "Oliver Twist",
+      "genre": "historical fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/730.txt.utf-8"
+    },
+    "158": {
+      "title": "Emma",
+      "genre": "romance",
+      "source_url": "https://www.gutenberg.org/ebooks/158.txt.utf-8"
+    },
+    "74": {
+      "title": "The Adventures of Tom Sawyer",
+      "genre": "adventure",
+      "source_url": "https://www.gutenberg.org/ebooks/74.txt.utf-8"
+    },
+    "768": {
+      "title": "Wuthering Heights",
+      "genre": "romance",
+      "source_url": "https://www.gutenberg.org/ebooks/768.txt.utf-8"
+    },
+    "1497": {
+      "title": "The Republic",
+      "genre": "other",
+      "source_url": "https://www.gutenberg.org/ebooks/1497.txt.utf-8"
+    },
+    "16328": {
+      "title": "Beowulf",
+      "genre": "fantasy",
+      "source_url": "https://www.gutenberg.org/ebooks/16328.txt.utf-8"
+    },
+    "209": {
+      "title": "The Turn of the Screw",
+      "genre": "horror",
+      "source_url": "https://www.gutenberg.org/ebooks/209.txt.utf-8"
+    },
+    "46": {
+      "title": "A Christmas Carol",
+      "genre": "fantasy",
+      "source_url": "https://www.gutenberg.org/ebooks/46.txt.utf-8"
+    },
+    "105": {
+      "title": "Persuasion",
+      "genre": "romance",
+      "source_url": "https://www.gutenberg.org/ebooks/105.txt.utf-8"
+    },
+    "996": {
+      "title": "Don Quixote",
+      "genre": "adventure",
+      "source_url": "https://www.gutenberg.org/ebooks/996.txt.utf-8"
+    },
+    "1259": {
+      "title": "Twenty Thousand Leagues Under the Seas",
+      "genre": "science fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/1259.txt.utf-8"
+    },
+    "16": {
+      "title": "Peter Pan",
+      "genre": "fantasy",
+      "source_url": "https://www.gutenberg.org/ebooks/16.txt.utf-8"
+    },
+    "521": {
+      "title": "The Life and Adventures of Robinson Crusoe",
+      "genre": "adventure",
+      "source_url": "https://www.gutenberg.org/ebooks/521.txt.utf-8"
+    },
+    "203": {
+      "title": "Uncle Tom’s Cabin",
+      "genre": "historical fiction",
+      "source_url": "https://www.gutenberg.org/ebooks/203.txt.utf-8"
+    }
+  },
+  "warnings": [
+    "Text may still contain inline tables of contents, front matter, OCR artifacts, or near duplicates.",
+    "Public-domain status and rights in each jurisdiction have not been independently verified.",
+    "No instruction examples were generated or reviewed.",
+    "Do not use validation data to fit the tokenizer; train tokenizer on train.jsonl only."
+  ]
+}
