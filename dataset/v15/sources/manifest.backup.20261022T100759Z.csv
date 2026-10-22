@@ -1,0 +1,104 @@
+book_id,title,file_path,source_url,license,approved,split
+new_dracula,Dracula,books/dracula.txt,https://www.gutenberg.org/,verified,False,train
+new_middlemarch,Middlemarch,books/middle_march.txt,https://www.gutenberg.org/,verified,True,train
+new_odyssey,The Odyssey,books/odyssey.txt,https://www.gutenberg.org/,verified,True,train
+new_pride,Pride and Prejudice,books/pride_prejudice.txt,https://www.gutenberg.org/,verified,False,train
+new_romeo,Romeo and Juliet,books/romeo_juliet.txt,https://www.gutenberg.org/,verified,True,train
+new_sherlock,Sherlock Holmes,books/sherlock_holmes.txt,https://www.gutenberg.org/,verified,False,val
+new_whale,Moby Dick,books/the_whale.txt,https://www.gutenberg.org/,verified,False,train
+new_jungle,The Jungle Book,books/jungle_book.txt,https://www.gutenberg.org/ebooks/236,verified,True,train
+war_and_peace,War and Peace,books/war_and_peace.txt,https://www.gutenberg.org/ebooks/2600,verified,True,train
+new_alice_adventure,Alice's Adventures in Wonderland,books/alice_adventure.txt,https://www.gutenberg.org/ebooks/11,verified,False,train
+new_secret_chimney,The Secret of Chimneys,books/secret_chimney.txt,https://www.gutenberg.org/ebooks/65238,verified,True,train
+pg_12,Through the Looking-Glass,cleaned/pg_12.txt,https://www.gutenberg.org/ebooks/12,verified,True,train
+pg_24,O Pioneers!,cleaned/pg_24.txt,https://www.gutenberg.org/ebooks/24,verified,True,train
+pg_27,Far from the Madding Crowd,cleaned/pg_27.txt,https://www.gutenberg.org/ebooks/27,verified,True,train
+pg_32,Herland,cleaned/pg_32.txt,https://www.gutenberg.org/ebooks/32,verified,True,train
+pg_33,The Scarlet Letter,cleaned/pg_33.txt,https://www.gutenberg.org/ebooks/33,verified,True,train
+pg_102,The Tragedy of Pudd'nhead Wilson,cleaned/pg_102.txt,https://www.gutenberg.org/ebooks/102.txt.utf-8,verified,True,train
+pg_103,Around the World in Eighty Days,cleaned/pg_103.txt,https://www.gutenberg.org/ebooks/103.txt.utf-8,verified,True,train
+pg_41,The Legend of Sleepy Hollow,cleaned/pg_41.txt,https://www.gutenberg.org/ebooks/41.txt.utf-8,verified,True,train
+pg_44,The Song of the Lark,cleaned/pg_44.txt,https://www.gutenberg.org/ebooks/44.txt.utf-8,verified,True,train
+pg_45,Anne of Green Gables,cleaned/pg_45.txt,https://www.gutenberg.org/ebooks/45.txt.utf-8,verified,True,train
+pg_47,Anne of Avonlea,cleaned/pg_47.txt,https://www.gutenberg.org/ebooks/47.txt.utf-8,verified,True,train
+pg_51,Anne of the Island,cleaned/pg_51.txt,https://www.gutenberg.org/ebooks/51.txt.utf-8,verified,True,train
+pg_54,The Marvelous Land of Oz,cleaned/pg_54.txt,https://www.gutenberg.org/ebooks/54.txt.utf-8,verified,True,train
+pg_60,The Scarlet Pimpernel,cleaned/pg_60.txt,https://www.gutenberg.org/ebooks/60.txt.utf-8,verified,True,train
+pg_62,A princess of Mars,cleaned/pg_62.txt,https://www.gutenberg.org/ebooks/62.txt.utf-8,verified,True,train
+pg_64,The gods of Mars,cleaned/pg_64.txt,https://www.gutenberg.org/ebooks/64.txt.utf-8,verified,True,train
+pg_68,The warlord of Mars,cleaned/pg_68.txt,https://www.gutenberg.org/ebooks/68.txt.utf-8,verified,True,train
+pg_72,"Thuvia, maid of Mars",cleaned/pg_72.txt,https://www.gutenberg.org/ebooks/72.txt.utf-8,verified,True,train
+pg_73,The Red Badge of Courage: An Episode of the American Civil War,cleaned/pg_73.txt,https://www.gutenberg.org/ebooks/73.txt.utf-8,verified,True,train
+pg_77,The House of the Seven Gables,cleaned/pg_77.txt,https://www.gutenberg.org/ebooks/77.txt.utf-8,verified,True,train
+pg_78,Tarzan of the Apes,cleaned/pg_78.txt,https://www.gutenberg.org/ebooks/78.txt.utf-8,verified,True,train
+pg_79,Terminal Compromise,cleaned/pg_79.txt,https://www.gutenberg.org/ebooks/79.txt.utf-8,verified,True,train
+pg_81,The Return of Tarzan,cleaned/pg_81.txt,https://www.gutenberg.org/ebooks/81.txt.utf-8,verified,True,train
+pg_82,Ivanhoe: A Romance,cleaned/pg_82.txt,https://www.gutenberg.org/ebooks/82.txt.utf-8,verified,True,train
+pg_83,"From the Earth to the moon; and, round the moon",cleaned/pg_83.txt,https://www.gutenberg.org/ebooks/83.txt.utf-8,verified,True,train
+pg_85,The Beasts of Tarzan,cleaned/pg_85.txt,https://www.gutenberg.org/ebooks/85.txt.utf-8,verified,True,train
+pg_86,A Connecticut Yankee in King Arthur's Court,cleaned/pg_86.txt,https://www.gutenberg.org/ebooks/86.txt.utf-8,verified,True,train
+pg_90,The Son of Tarzan,cleaned/pg_90.txt,https://www.gutenberg.org/ebooks/90.txt.utf-8,verified,True,train
+pg_91,Tom Sawyer Abroad,cleaned/pg_91.txt,https://www.gutenberg.org/ebooks/91.txt.utf-8,verified,True,train
+pg_92,Tarzan and the Jewels of Opar,cleaned/pg_92.txt,https://www.gutenberg.org/ebooks/92.txt.utf-8,verified,True,train
+pg_93,"Tom Sawyer, Detective",cleaned/pg_93.txt,https://www.gutenberg.org/ebooks/93.txt.utf-8,verified,True,train
+pg_94,Alexander's Bridge,cleaned/pg_94.txt,https://www.gutenberg.org/ebooks/94.txt.utf-8,verified,True,train
+pg_95,The prisoner of Zenda,cleaned/pg_95.txt,https://www.gutenberg.org/ebooks/95.txt.utf-8,verified,True,train
+pg_96,The Monster Men,cleaned/pg_96.txt,https://www.gutenberg.org/ebooks/96.txt.utf-8,verified,True,train
+pg_97,Flatland: A Romance of Many Dimensions,cleaned/pg_97.txt,https://www.gutenberg.org/ebooks/97.txt.utf-8,verified,True,train
+pg_106,Jungle Tales of Tarzan,cleaned/pg_106.txt,https://www.gutenberg.org/ebooks/106.txt.utf-8,verified,True,train
+pg_108,The Return of Sherlock Holmes,cleaned/pg_108.txt,https://www.gutenberg.org/ebooks/108.txt.utf-8,verified,False,train
+pg_110,Tess of the d'Urbervilles: A Pure Woman,cleaned/pg_110.txt,https://www.gutenberg.org/ebooks/110.txt.utf-8,verified,True,train
+pg_111,Freckles,cleaned/pg_111.txt,https://www.gutenberg.org/ebooks/111.txt.utf-8,verified,True,train
+pg_112,Violists,cleaned/pg_112.txt,https://www.gutenberg.org/ebooks/112.txt.utf-8,verified,True,train
+pg_113,The Secret Garden,cleaned/pg_113.txt,https://www.gutenberg.org/ebooks/113.txt.utf-8,verified,True,train
+pg_119,A Tramp Abroad,cleaned/pg_119.txt,https://www.gutenberg.org/ebooks/119.txt.utf-8,verified,True,train
+pg_121,Northanger Abbey,cleaned/pg_121.txt,https://www.gutenberg.org/ebooks/121.txt.utf-8,verified,True,train
+pg_122,The Return of the Native,cleaned/pg_122.txt,https://www.gutenberg.org/ebooks/122.txt.utf-8,verified,True,train
+pg_123,At the Earth's Core,cleaned/pg_123.txt,https://www.gutenberg.org/ebooks/123.txt.utf-8,verified,True,train
+pg_125,A Girl of the Limberlost,cleaned/pg_125.txt,https://www.gutenberg.org/ebooks/125.txt.utf-8,verified,True,train
+pg_126,The Poison Belt,cleaned/pg_126.txt,https://www.gutenberg.org/ebooks/126.txt.utf-8,verified,True,train
+pg_131,"The Pilgrim's Progress from this world to that which is to come
+Delivered under the similitude of a dream, by John Bunyan",cleaned/pg_131.txt,https://www.gutenberg.org/ebooks/131.txt.utf-8,verified,True,train
+pg_133,The Damnation of Theron Ware,cleaned/pg_133.txt,https://www.gutenberg.org/ebooks/133.txt.utf-8,verified,True,train
+pg_134,"Maria; Or, The Wrongs of Woman",cleaned/pg_134.txt,https://www.gutenberg.org/ebooks/134.txt.utf-8,verified,True,train
+pg_135,Les Misérables,cleaned/pg_135.txt,https://www.gutenberg.org/ebooks/135.txt.utf-8,verified,True,train
+pg_137,"Sara Crewe; Or, What Happened at Miss Minchin's Boarding School",cleaned/pg_137.txt,https://www.gutenberg.org/ebooks/137.txt.utf-8,verified,True,train
+pg_138,George Sand: Some Aspects of Her Life and Writings,cleaned/pg_138.txt,https://www.gutenberg.org/ebooks/138.txt.utf-8,verified,True,train
+pg_139,The Lost World,cleaned/pg_139.txt,https://www.gutenberg.org/ebooks/139.txt.utf-8,verified,True,train
+pg_140,The Jungle,cleaned/pg_140.txt,https://www.gutenberg.org/ebooks/140.txt.utf-8,verified,True,train
+pg_141,Mansfield Park,cleaned/pg_141.txt,https://www.gutenberg.org/ebooks/141.txt.utf-8,verified,True,train
+pg_142,"The $30,000 Bequest, and Other Stories",cleaned/pg_142.txt,https://www.gutenberg.org/ebooks/142.txt.utf-8,verified,True,train
+pg_143,The Mayor of Casterbridge,cleaned/pg_143.txt,https://www.gutenberg.org/ebooks/143.txt.utf-8,verified,True,train
+pg_144,The Voyage Out,cleaned/pg_144.txt,https://www.gutenberg.org/ebooks/144.txt.utf-8,verified,True,train
+pg_146,"A Little Princess
+Being the whole story of Sara Crewe now told for the first time",cleaned/pg_146.txt,https://www.gutenberg.org/ebooks/146.txt.utf-8,verified,True,train
+pg_149,The Lost Continent,cleaned/pg_149.txt,https://www.gutenberg.org/ebooks/149.txt.utf-8,verified,True,train
+pg_152,Wild Justice,cleaned/pg_152.txt,https://www.gutenberg.org/ebooks/152.txt.utf-8,verified,True,train
+pg_153,Jude the Obscure,cleaned/pg_153.txt,https://www.gutenberg.org/ebooks/153.txt.utf-8,verified,True,train
+pg_154,The Rise of Silas Lapham,cleaned/pg_154.txt,https://www.gutenberg.org/ebooks/154.txt.utf-8,verified,True,train
+pg_155,The Moonstone,cleaned/pg_155.txt,https://www.gutenberg.org/ebooks/155.txt.utf-8,verified,True,train
+pg_157,Daddy-Long-Legs,cleaned/pg_157.txt,https://www.gutenberg.org/ebooks/157.txt.utf-8,verified,True,train
+pg_159,The island of Doctor Moreau,cleaned/pg_159.txt,https://www.gutenberg.org/ebooks/159.txt.utf-8,verified,True,train
+pg_160,"The Awakening, and Selected Short Stories",cleaned/pg_160.txt,https://www.gutenberg.org/ebooks/160.txt.utf-8,verified,True,train
+pg_161,Sense and Sensibility,cleaned/pg_161.txt,https://www.gutenberg.org/ebooks/161.txt.utf-8,verified,True,train
+pg_164,Twenty Thousand Leagues under the Sea,cleaned/pg_164.txt,https://www.gutenberg.org/ebooks/164.txt.utf-8,verified,True,train
+pg_165,McTeague: A Story of San Francisco,cleaned/pg_165.txt,https://www.gutenberg.org/ebooks/165.txt.utf-8,verified,True,train
+pg_166,Summer,cleaned/pg_166.txt,https://www.gutenberg.org/ebooks/166.txt.utf-8,verified,True,train
+pg_169,The Well at the World's End: A Tale,cleaned/pg_169.txt,https://www.gutenberg.org/ebooks/169.txt.utf-8,verified,True,train
+pg_170,The Haunted Hotel: A Mystery of Modern Venice,cleaned/pg_170.txt,https://www.gutenberg.org/ebooks/170.txt.utf-8,verified,True,train
+pg_171,Charlotte Temple,cleaned/pg_171.txt,https://www.gutenberg.org/ebooks/171.txt.utf-8,verified,True,train
+pg_172,The Haunted Bookshop,cleaned/pg_172.txt,https://www.gutenberg.org/ebooks/172.txt.utf-8,verified,True,train
+pg_173,The Insidious Dr. Fu Manchu,cleaned/pg_173.txt,https://www.gutenberg.org/ebooks/173.txt.utf-8,verified,True,train
+pg_175,The Phantom of the Opera,cleaned/pg_175.txt,https://www.gutenberg.org/ebooks/175.txt.utf-8,verified,True,train
+pg_176,Roderick Hudson,cleaned/pg_176.txt,https://www.gutenberg.org/ebooks/176.txt.utf-8,verified,True,train
+pg_177,The American,cleaned/pg_177.txt,https://www.gutenberg.org/ebooks/177.txt.utf-8,verified,True,train
+pg_178,Confidence,cleaned/pg_178.txt,https://www.gutenberg.org/ebooks/178.txt.utf-8,verified,True,train
+pg_179,The Europeans,cleaned/pg_179.txt,https://www.gutenberg.org/ebooks/179.txt.utf-8,verified,True,train
+pg_204,The innocence of Father Brown,cleaned/pg_204.txt,https://www.gutenberg.org/ebooks/204.txt.utf-8,verified,True,train
+pg_208,Daisy Miller: A Study,cleaned/pg_208.txt,https://www.gutenberg.org/ebooks/208.txt.utf-8,verified,True,train
+pg_210,An International Episode,cleaned/pg_210.txt,https://www.gutenberg.org/ebooks/210.txt.utf-8,verified,True,train
+pg_211,The Aspern Papers,cleaned/pg_211.txt,https://www.gutenberg.org/ebooks/211.txt.utf-8,verified,True,train
+pg_215,The call of the wild,cleaned/pg_215.txt,https://www.gutenberg.org/ebooks/215.txt.utf-8,verified,True,train
+pg_217,Sons and Lovers,cleaned/pg_217.txt,https://www.gutenberg.org/ebooks/217.txt.utf-8,verified,True,train
+pg_219,Heart of Darkness,cleaned/pg_219.txt,https://www.gutenberg.org/ebooks/219.txt.utf-8,verified,True,train
+pg_220,The Secret Sharer,cleaned/pg_220.txt,https://www.gutenberg.org/ebooks/220.txt.utf-8,verified,True,train
