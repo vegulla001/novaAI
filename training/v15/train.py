@@ -11,7 +11,7 @@ import numpy as np
 import torch
 from torch.nn.utils import clip_grad_norm_
 from torch.nn.utils.rnn import pad_sequence
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 
 
 def sha256(path):

@@ -1,117 +1,222 @@
-"""Integrated StoryAI V15: NLU edits, persistent story state, GPT scenes, strict rejection."""
-import argparse,json,re,hashlib
+"""V15 scene controller: explicit beats, bounded continuity, honest validation.
+
+No network, API, or training required. Plan-only mode works without Torch.
+"""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+import random
+import re
 from pathlib import Path
-import torch
-from tokenizers import Tokenizer
-from model import GPT,GPTConfig
-from training.v15.train_instruction import prompt as training_prompt
-from story_engine.v14.novel import make_outline,names_from
 
-def edit_spec(spec,commands,nlu_checkpoint):
-    from nlu.inference import StoryNLU
-    nlu=StoryNLU(checkpoint=nlu_checkpoint)
-    applied=[];rejected=[]
-    for cmd in commands:
-        decision=nlu.interpret(cmd,spec)
-        action=decision.get('action')
-        if action=='ADD_CHARACTER':
-            if any(c.get('name','').casefold()==decision['name'].casefold() for c in spec.get('characters',[])):
-                rejected.append({'command':cmd,'reason':'Duplicate character'});continue
-            spec.setdefault('characters',[]).append({'name':decision['name'],'role':decision['role']})
-        elif action=='UPDATE_CHARACTER':
-            for c in spec.get('characters',[]):
-                if c['name'].casefold()==decision['name'].casefold():c['role']=decision['role']
-        elif action=='SET_PLOT':spec['goal']=decision['plot']
-        elif action=='ADD_RELATIONSHIP':
-            spec.setdefault('relationships',[]).append({k:decision[k] for k in ('character1','character2','relationship')})
-        elif action=='ADD_CHAPTER':spec.setdefault('chapter_titles',[]).append(decision['title'])
+
+def _string(value):
+    return str(value or '').strip()
+
+
+def make_outline(spec, outline_file=None):
+    """Explicit chapters/scenes take precedence; text outline maps one line to a chapter."""
+    chapters = spec.get('chapters')
+    lines = []
+    if outline_file:
+        lines = [s.strip() for s in Path(outline_file).read_text(encoding='utf-8').splitlines() if s.strip()]
+        if not lines:
+            raise ValueError('Outline file is empty')
+    if isinstance(chapters, list):
+        if lines:
+            raise ValueError('Use either spec.chapters[] or --outline-file, not both')
+        raw = chapters
+    else:
+        count = int(chapters or len(lines) or 0)
+        if not 1 <= count <= 40:
+            raise ValueError('Supply 1..40 chapters or an outline file')
+        if lines and len(lines) != count:
+            raise ValueError(f'Outline has {len(lines)} beats, but chapters={count}. Refusing to repeat beats.')
+        if not lines:
+            raise ValueError('No chapter-specific plot. Supply chapters[] or --outline-file. Refusing generic repeated goals.')
+        raw = [{'title': f'Chapter {i+1}', 'scenes': [{'beat': beat}]} for i, beat in enumerate(lines)]
+
+    result = []
+    for ci, chapter in enumerate(raw, 1):
+        if isinstance(chapter, str):
+            chapter = {'scenes': [{'beat': chapter}]}
+        scenes = chapter.get('scenes', [])
+        if not scenes:
+            raise ValueError(f'Chapter {ci} has no scenes')
+        structured = []
+        for si, scene in enumerate(scenes, 1):
+            if isinstance(scene, str):
+                scene = {'beat': scene}
+            beat = _string(scene.get('beat') or scene.get('event') or scene.get('goal'))
+            if not beat:
+                raise ValueError(f'Chapter {ci}, scene {si} needs a specific beat')
+            structured.append({'number':si, 'beat':beat,
+                'goal':_string(scene.get('goal') or beat),
+                'obstacle':_string(scene.get('obstacle')),
+                'outcome':_string(scene.get('outcome')),
+                'required_terms':[str(x) for x in scene.get('required_terms', [])]})
+        result.append({'number':ci,'title':_string(chapter.get('title')) or f'Chapter {ci}',
+                       'scenes':structured})
+    return result
+
+
+def build_prompt(spec, chapter, scene, accepted_events, *, format='plain'):
+    cast = []
+    for char in spec.get('characters', []):
+        if isinstance(char, dict):
+            cast.append(f"{char.get('name','Unknown')}: {char.get('role','character')}; {char.get('personality','')}")
         else:
-            rejected.append({'command':cmd,'decision':decision});continue
-        applied.append({'command':cmd,'decision':decision})
-    return applied,rejected
+            cast.append(str(char))
+    # Keep memory bounded and only use accepted text; no invented summaries.
+    memory = '\n'.join(accepted_events[-3:]) or 'No prior accepted scenes.'
+    common = (f"Title: {_string(spec.get('title'))}\n"
+              f"Genre: {_string(spec.get('genre')) or 'fiction'}\n"
+              f"Premise: {_string(spec.get('premise'))}\n"
+              f"Setting: {_string(spec.get('setting'))}\n"
+              f"Characters: {' | '.join(cast)}\n"
+              f"Chapter {chapter['number']}: {chapter['title']}\n"
+              f"Scene {scene['number']}\n"
+              f"This scene's event: {scene['beat']}\n"
+              f"Goal: {scene['goal']}\nObstacle: {scene['obstacle']}\n"
+              f"Intended outcome: {scene['outcome']}\n"
+              f"Previously accepted events (excerpts; not verified summaries): {memory}\n")
+    if format == 'sft':
+        # This format is NOT equivalent to the old continuation SFT; retraining would be needed.
+        return ('Continue the following fiction scene naturally, preserving its characters, point of view, and events.\n\n'
+                'Story so far:\n'+common+'\nContinuation:\n')
+    if format == 'plain':
+        return common + 'Write the next concrete fictional scene in narrative prose, continuing from these facts:\n'
+    raise ValueError('Unknown prompt format')
 
-def load(checkpoint,tokenizer):
-    sha=hashlib.sha256(Path(tokenizer).read_bytes()).hexdigest()
+
+def validate(text, scene, *, min_words=35):
+    """Heuristic quality gate, not semantic proof of event compliance."""
+    issues=[]
+    words=re.findall(r"[\w']+", text.lower())
+    if len(words) < min_words:
+        issues.append('too_short')
+    if len(words) >= 35 and len(set(words))/len(words) < .25:
+        issues.append('low_vocabulary_diversity')
+    for term in scene.get('required_terms', []):
+        if not re.search(r'(?<!\w)'+re.escape(term)+r'(?!\w)',text,re.I):
+            issues.append('missing_required_term:'+term)
+    sentences=[re.sub(r'\W+',' ',s.lower()).strip() for s in re.split(r'[.!?]+',text) if len(s.split())>=5]
+    if sentences and len(sentences)-len(set(sentences))>=2:
+        issues.append('repeated_sentences')
+    return issues
+
+
+def load_model(checkpoint, tokenizer_path, device=None):
+    import torch
+    from tokenizers import Tokenizer
+    from training.v15.model import GPT, GPTConfig
     ck=torch.load(checkpoint,map_location='cpu',weights_only=False)
-    if ck.get('tokenizer_sha256')!=sha:raise ValueError('Tokenizer SHA256 mismatch')
-    tok=Tokenizer.from_file(tokenizer)
-    cfg=GPTConfig(**ck['config'])
-    if cfg.vocab_size!=tok.get_vocab_size():raise ValueError('Vocabulary mismatch')
-    model=GPT(cfg);model.load_state_dict(ck['model']);model.to('cuda' if torch.cuda.is_available() else 'cpu').eval()
+    actual=hashlib.sha256(Path(tokenizer_path).read_bytes()).hexdigest()
+    if ck.get('tokenizer_sha256') != actual:
+        raise ValueError('Checkpoint/tokenizer SHA256 mismatch')
+    cfg=GPTConfig(**ck.get('model_config', ck.get('config', {})))
+    tok=Tokenizer.from_file(str(tokenizer_path))
+    if tok.get_vocab_size()!=cfg.vocab_size:
+        raise ValueError('Vocabulary mismatch')
+    model=GPT(cfg)
+    model.load_state_dict(ck['model'],strict=True)
+    model=model.to(device or ('cuda' if torch.cuda.is_available() else 'cpu')).eval()
     return model,tok
 
-@torch.inference_mode()
-def generate(model,tok,text,max_new_tokens,temperature,top_k):
-    ids=tok.encode(text).ids
-    if len(ids)>=model.config.block_size:raise ValueError('Prompt exceeds model context; refusing to drop grounding')
-    output=[];device=next(model.parameters()).device
-    for _ in range(min(max_new_tokens,model.config.block_size-len(ids))):
-        logits,_=model(torch.tensor([ids+output],device=device))
-        z=logits[0,-1].float()/max(temperature,.05)
-        if top_k>0:
-            cutoff=torch.topk(z,min(top_k,z.numel())).values[-1];z[z<cutoff]=-float('inf')
-        nxt=int(torch.multinomial(z.softmax(-1),1));output.append(nxt)
-        decoded=tok.decode(output)
-        if '<END_STORY>' in decoded:break
-    return tok.decode(output).split('<END_STORY>')[0].strip()
 
-def validate(text,names):
-    problems=[]
-    if len(text.split())<70:problems.append('too_short')
-    if re.search(r'<(?:GENRE|INSTRUCTION|STORY|END_STORY)',text):problems.append('leaked_control_markers')
-    if text.count('\ufffd')>0:problems.append('invalid_utf8')
-    missing=[n for n in names if not re.search(r'(?<!\w)'+re.escape(n)+r'(?!\w)',text,re.I)]
-    if missing:problems.append('missing_characters:'+','.join(missing))
-    if len(text.split())>=30:
-        words=re.findall(r'[a-z]+',text.lower());unique=len(set(words))/max(1,len(words))
-        if unique<.22:problems.append('extreme_repetition')
-    return problems
+def generate(model,tok,prompt,*,max_new_tokens=200,temperature=.75,top_k=40,seed=42):
+    import torch
+    torch.manual_seed(seed)
+    device=next(model.parameters()).device
+    ids=tok.encode(prompt).ids
+    if not ids:
+        raise ValueError('Prompt produced no tokens')
+    # Grounding gets priority; fail rather than silently remove chapter and memory.
+    reserved=min(max_new_tokens,model.config.block_size//3)
+    if len(ids)>model.config.block_size-reserved:
+        raise ValueError(f'Prompt is {len(ids)} tokens; shorten memory/beat to leave {reserved} output slots')
+    eos=tok.token_to_id('<eos>')
+    output=[]
+    with torch.inference_mode():
+        for _ in range(min(max_new_tokens,model.config.block_size-len(ids))):
+            idx=torch.tensor([ids+output],dtype=torch.long,device=device)
+            logits,_=model(idx)
+            # Supports GPT.forward inference shape [B, 1, vocab] and [B,T,vocab].
+            scores=logits[0,-1,:].float()/max(float(temperature),0.05)
+            if top_k>0:
+                threshold=torch.topk(scores,min(top_k,scores.numel())).values[-1]
+                scores[scores<threshold]=-float('inf')
+            next_id=int(torch.multinomial(torch.softmax(scores,dim=-1),1))
+            if eos is not None and next_id==eos:
+                break
+            output.append(next_id)
+    return tok.decode(output,skip_special_tokens=True).strip()
 
-def run(spec,commands,checkpoint,tokenizer,nlu_checkpoint,outdir,max_new_tokens,temperature,top_k):
+
+def run(spec,*,outdir,outline_file=None,checkpoint=None,tokenizer=None,plan_only=False,
+        prompt_format='plain',max_new_tokens=200,temperature=.75,top_k=40,seed=42):
+    outline=make_outline(spec,outline_file)
     out=Path(outdir);out.mkdir(parents=True,exist_ok=True)
-    applied,rejected=edit_spec(spec,commands,nlu_checkpoint) if commands else ([],[])
-    (out/'nlu_report.json').write_text(json.dumps({'applied':applied,'rejected':rejected},indent=2),encoding='utf-8')
-    (out/'story_spec.json').write_text(json.dumps(spec,indent=2),encoding='utf-8')
-    model,tok=load(checkpoint,tokenizer);outline=make_outline(spec);names=names_from(spec)
-    state={'characters':spec.get('characters',[]),'relationships':spec.get('relationships',[]),'events':[],'chapters':[]}
-    (out/'outline.json').write_text(json.dumps(outline,indent=2),encoding='utf-8')
-    failures=[];chapter_files=[]
+    (out/'outline.json').write_text(json.dumps(outline,indent=2,ensure_ascii=False),encoding='utf-8')
+    (out/'story_spec.json').write_text(json.dumps(spec,indent=2,ensure_ascii=False),encoding='utf-8')
+    model=tok=None
+    if not plan_only:
+        if not checkpoint or not tokenizer:
+            raise ValueError('Checkpoint and tokenizer are required without --plan-only')
+        model,tok=load_model(checkpoint,tokenizer)
+    events=[];failures=[];chapters=[];prompt_manifest=[]
     for chapter in outline:
         scenes=[]
-        for scene in range(1,int(spec.get('scenes_per_chapter',2))+1):
-            # EXACT same fields/order as instruction SFT. Chapter state is tracked separately; never invent fake continuity.
-            row={'characters':spec.get('characters',[]),'genre':spec.get('genre','fiction'),
-                 'setting':spec.get('setting',''),'goal':chapter['objective'],
-                 'obstacle':chapter['obstacle'],'outcome':chapter['intended_outcome']}
-            text=generate(model,tok,training_prompt(row),max_new_tokens,temperature,top_k)
-            problems=validate(text,names)
-            if problems:
-                failures.append({'chapter':chapter['number'],'scene':scene,'issues':problems})
-                scenes.append(f'[REJECTED MODEL SCENE: {", ".join(problems)}]')
+        for scene in chapter['scenes']:
+            prompt=build_prompt(spec,chapter,scene,events,format=prompt_format)
+            prompt_manifest.append({'chapter':chapter['number'],'scene':scene['number'],
+                                    'beat':scene['beat'],'prompt':prompt})
+            if plan_only: continue
+            text=generate(model,tok,prompt,max_new_tokens=max_new_tokens,
+                          temperature=temperature,top_k=top_k,
+                          seed=seed+chapter['number']*1000+scene['number'])
+            issues=validate(text,scene)
+            if issues:
+                failures.append({'chapter':chapter['number'],'scene':scene['number'],'issues':issues})
+                scenes.append('[REJECTED SCENE: '+', '.join(issues)+']')
             else:
                 scenes.append(text)
-                state['events'].append({'chapter':chapter['number'],'scene':scene,'excerpt':text[:300],
-                                        'warning':'Events are generated text, not fact-checked continuity.'})
-        title=spec.get('chapter_titles',[])
-        label=title[chapter['number']-1] if len(title)>=chapter['number'] else chapter['stage']
-        content=f"# Chapter {chapter['number']}: {label}\n\n"+'\n\n'.join(scenes)+'\n'
-        file=f"chapter_{chapter['number']:02d}.md";(out/file).write_text(content,encoding='utf-8');chapter_files.append(file)
-        state['chapters'].append({'number':chapter['number'],'file':file})
-        (out/'story_state.json').write_text(json.dumps(state,indent=2),encoding='utf-8')
-    (out/'novel.md').write_text('# '+spec.get('title','Untitled')+'\n\n'+'\n'.join((out/f).read_text() for f in chapter_files),encoding='utf-8')
-    report={'quality_gate_passed':not failures and not rejected,'rejected_scenes':failures,'rejected_nlu_commands':rejected,
-            'note':'This is a basic quality gate, NOT a measure of prose quality or true chapter continuity.'}
+                # Only accepted text enters memory. Explicitly excerpt, not auto-fabricated event facts.
+                events.append(f"Ch{chapter['number']} scene{scene['number']}: "+' '.join(text.split())[:200])
+        if not plan_only:
+            name=f"chapter_{chapter['number']:02d}.md"
+            (out/name).write_text('# '+chapter['title']+'\n\n'+'\n\n'.join(scenes)+'\n',encoding='utf-8')
+            chapters.append(name)
+            (out/'story_state.json').write_text(json.dumps({'accepted_excerpts':events,'failures':failures},indent=2,ensure_ascii=False),encoding='utf-8')
+    (out/'prompt_manifest.json').write_text(json.dumps(prompt_manifest,indent=2,ensure_ascii=False),encoding='utf-8')
+    if not plan_only:
+        (out/'novel.md').write_text('# '+_string(spec.get('title'))+'\n\n'+'\n\n'.join((out/n).read_text(encoding='utf-8') for n in chapters),encoding='utf-8')
+    report={'mode':'plan_only' if plan_only else 'generation','scenes_planned':len(prompt_manifest),
+            'scenes_rejected':len(failures),'failures':failures,
+            'warning':'Heuristic checks do not verify plot comprehension; weak pretrained models may still ignore prompts.'}
     (out/'quality_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
-    print(json.dumps(report,indent=2))
+    return report
+
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--spec',default='story_spec.example.json')
-    p.add_argument('--commands',help='Text file, one NLU edit command per line')
-    p.add_argument('--nlu-checkpoint',default='checkpoints/storyai_v10_nlu.pt')
-    p.add_argument('--checkpoint',default='checkpoints/storyai_v15_instruction.pt')
-    p.add_argument('--tokenizer',default='dataset/v15/tokenizer.json');p.add_argument('--outdir',default='output/v15_novel')
-    p.add_argument('--max-new-tokens',type=int,default=450);p.add_argument('--temperature',type=float,default=.7);p.add_argument('--top-k',type=int,default=30)
-    a=p.parse_args();spec=json.loads(Path(a.spec).read_text(encoding='utf-8'))
-    commands=Path(a.commands).read_text(encoding='utf-8').splitlines() if a.commands else []
-    run(spec,[c for c in commands if c.strip()],a.checkpoint,a.tokenizer,a.nlu_checkpoint,a.outdir,a.max_new_tokens,a.temperature,a.top_k)
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--spec',default='story_spec.example.json')
+    p.add_argument('--outline-file',default=None)
+    p.add_argument('--outdir',default='output/v15_plotted')
+    p.add_argument('--checkpoint',default='checkpoints/v15_pretrain_experiment/pretrain_latest.pt')
+    p.add_argument('--tokenizer',default='dataset/v15/tokenizer.json')
+    p.add_argument('--plan-only',action='store_true')
+    p.add_argument('--prompt-format',choices=['plain','sft'],default='plain')
+    p.add_argument('--max-new-tokens',type=int,default=200)
+    p.add_argument('--temperature',type=float,default=.75)
+    p.add_argument('--top-k',type=int,default=40)
+    p.add_argument('--seed',type=int,default=42)
+    a=p.parse_args()
+    spec=json.loads(Path(a.spec).read_text(encoding='utf-8'))
+    print(json.dumps(run(spec,outdir=a.outdir,outline_file=a.outline_file,
+                         checkpoint=a.checkpoint,tokenizer=a.tokenizer,plan_only=a.plan_only,
+                         prompt_format=a.prompt_format,max_new_tokens=a.max_new_tokens,
+                         temperature=a.temperature,top_k=a.top_k,seed=a.seed),indent=2))
+
 if __name__=='__main__':main()
