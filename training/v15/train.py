@@ -25,6 +25,8 @@ def get_args():
     p.add_argument('--out-dir', default='checkpoints/v15')
     p.add_argument('--init-from', default=None, help='Pretraining checkpoint for SFT; required for SFT unless --smoke-test')
     p.add_argument('--resume', default=None, help='Resume same-mode checkpoint including optimizer')
+    p.add_argument('--restart-from', default=None, help='Load checkpoint model weights only; fresh optimizer and training schedule')
+    p.add_argument('--eval-seed', type=int, default=20261029, help='Separate fixed validation sampling seed')
     p.add_argument('--n-layer', type=int, default=8)
     p.add_argument('--n-head', type=int, default=8)
     p.add_argument('--n-embd', type=int, default=512)
@@ -110,8 +112,10 @@ def main():
     if a.smoke_test:
         a.max_steps, a.grad_accum, a.eval_batches = 1, 1, 1
         a.eval_every, a.save_every = 1, 1
-    if a.resume and a.init_from:
-        raise ValueError('Use either --resume or --init-from, not both')
+    if sum(bool(v) for v in (a.resume, a.init_from, a.restart_from)) > 1:
+        raise ValueError('Choose only one of --resume, --init-from, --restart-from')
+    if a.restart_from and a.mode != 'pretrain':
+        raise ValueError('--restart-from currently supports pretrain only')
     if a.mode == 'sft' and not (a.init_from or a.resume or a.smoke_test):
         raise ValueError('SFT requires --init-from pretrained V15 checkpoint')
     if min(a.block_size, a.batch_size, a.grad_accum, a.max_steps) < 1:
@@ -172,13 +176,13 @@ def main():
         batch = lambda split: get_sft_batch(train if split == 'train' else val, a.batch_size, a.block_size, device)
     cfg = dict(block_size=a.block_size, vocab_size=vocab, n_layer=a.n_layer, n_head=a.n_head, n_embd=a.n_embd)
     ckpt = None
-    if a.resume or a.init_from:
-        ckpt = load_checkpoint(a.resume or a.init_from, device)
+    if a.resume or a.init_from or a.restart_from:
+        ckpt = load_checkpoint(a.resume or a.init_from or a.restart_from, device)
         if ckpt.get('tokenizer_sha256') != tokenizer_hash:
             raise ValueError('Checkpoint tokenizer hash mismatch')
         if a.init_from and ckpt.get('mode') != 'pretrain':
             raise ValueError('--init-from must point to a pretraining checkpoint')
-        if a.resume and ckpt.get('mode') != a.mode:
+        if (a.resume or a.restart_from) and ckpt.get('mode') != a.mode:
             raise ValueError('Cannot resume checkpoint from different mode')
         cfg = ckpt['model_config']
         if cfg['vocab_size'] != vocab:
@@ -201,10 +205,28 @@ def main():
         if 'python_rng_state' in ckpt:
             random.setstate(ckpt['python_rng_state'])
     use_amp = device == 'cuda'
-    scaler = torch.amp.GradScaler('cuda', enabled=use_amp)
+    amp_dtype = torch.bfloat16 if use_amp and torch.cuda.is_bf16_supported() else torch.float16
+    use_scaler = use_amp and amp_dtype == torch.float16
+    scaler = torch.amp.GradScaler('cuda', enabled=use_scaler)
     if a.resume and 'scaler' in ckpt:
         scaler.load_state_dict(ckpt['scaler'])
-    print(json.dumps({'mode': a.mode, 'device': device, 'parameters': sum(p.numel() for p in model.parameters()), 'step': step, 'tokenizer_sha256': tokenizer_hash, 'smoke_test': a.smoke_test}, indent=2))
+    start_step = step
+    if a.restart_from:
+        print(f'WEIGHTS_ONLY_RESTART source_step={ckpt.get("step")} schedule_step=0 optimizer=fresh')
+    print(json.dumps({'mode': a.mode, 'device': device, 'parameters': sum(p.numel() for p in model.parameters()), 'step': step, 'tokenizer_sha256': tokenizer_hash, 'smoke_test': a.smoke_test, 'amp_dtype': str(amp_dtype) if use_amp else 'none'}, indent=2))
+    # Validation windows are fixed across all evaluations and never consume training RNG.
+    fixed_batches = None
+    if a.mode == 'pretrain':
+        rng = np.random.default_rng(a.eval_seed)
+        fixed_batches = {}
+        for split, tokens in (('train', train), ('val', val)):
+            starts = rng.integers(0, len(tokens) - a.block_size, size=(a.eval_batches, a.batch_size))
+            fixed_batches[split] = []
+            for group in starts:
+                x = torch.from_numpy(np.stack([np.array(tokens[int(i):int(i)+a.block_size], dtype=np.int64) for i in group])).to(device)
+                y = torch.from_numpy(np.stack([np.array(tokens[int(i)+1:int(i)+a.block_size+1], dtype=np.int64) for i in group])).to(device)
+                fixed_batches[split].append((x, y))
+    best_val = float('inf')
     if a.mode == 'sft' and len(train) < 1000:
         print(f'WARNING: only {len(train)} SFT training examples. Pipeline testing only; high overfitting risk.')
 
@@ -214,37 +236,46 @@ def main():
         results = {}
         for split in ('train', 'val'):
             losses = []
-            for _ in range(a.eval_batches):
-                x, y = batch(split)
-                with torch.autocast(device_type='cuda', dtype=torch.float16, enabled=use_amp):
+            for i in range(a.eval_batches):
+                x, y = fixed_batches[split][i] if fixed_batches is not None else batch(split)
+                with torch.autocast(device_type=device, dtype=amp_dtype, enabled=use_amp):
                     _, loss = model(x, y)
                 losses.append(float(loss.item()))
             results[split] = sum(losses) / len(losses)
         model.train()
         return results
 
-    def save():
+    def save(best=False):
         out = Path(a.out_dir)
         out.mkdir(parents=True, exist_ok=True)
         state = {'model': model.state_dict(), 'optimizer': optimizer.state_dict(),
                  'scaler': scaler.state_dict(), 'model_config': cfg, 'mode': a.mode,
-                 'step': step, 'tokenizer_sha256': tokenizer_hash,
+                 'step': step, 'tokenizer_sha256': tokenizer_hash, 'eval_seed': a.eval_seed, 'best_val': best_val,
                  'torch_rng_state': torch.get_rng_state(),
                  'python_rng_state': random.getstate()}
         if device == 'cuda':
             state['cuda_rng_state'] = torch.cuda.get_rng_state()
-        target = out / f'{a.mode}_latest.pt'
-        tmp = out / f'{a.mode}_latest.tmp'
+        name = f'{a.mode}_best.pt' if best else f'{a.mode}_latest.pt'
+        target = out / name
+        tmp = out / (name + '.tmp')
         torch.save(state, tmp)
         tmp.replace(target)
         print(f'Checkpoint saved: {target}')
 
+    if not a.smoke_test:
+        baseline = evaluate()
+        best_val = baseline['val']
+        print('BASELINE_FIXED:', json.dumps(baseline), flush=True)
+        save(best=True)  # preserve starting weights unless actual validation improvement
+
+    # For weights-only restart, step counts NEW updates. With --resume, it remains absolute.
     while step < a.max_steps:
         optimizer.zero_grad(set_to_none=True)
-        if step < a.warmup_steps:
-            lr = a.lr * (step + 1) / max(1, a.warmup_steps)
+        schedule_step = step
+        if schedule_step < a.warmup_steps:
+            lr = a.lr * (schedule_step + 1) / max(1, a.warmup_steps)
         else:
-            progress = (step - a.warmup_steps) / (
+            progress = (schedule_step - a.warmup_steps) / (
                 a.lr_decay_steps - a.warmup_steps
             )
             progress = min(1.0, max(0.0, progress))
@@ -257,7 +288,7 @@ def main():
         losses = []
         for _ in range(a.grad_accum):
             x, y = batch('train')
-            with torch.autocast(device_type='cuda', dtype=torch.float16, enabled=use_amp):
+            with torch.autocast(device_type=device, dtype=amp_dtype, enabled=use_amp):
                 _, loss = model(x, y)
             if not torch.isfinite(loss):
                 raise RuntimeError('Non-finite training loss')
@@ -270,7 +301,11 @@ def main():
         step += 1
         print(f'step={step} train_loss={sum(losses)/len(losses):.4f} lr={lr:.3g}', flush=True)
         if step % a.eval_every == 0 or step == a.max_steps:
-            print('eval:', json.dumps(evaluate()), flush=True)
+            scores = evaluate()
+            print('eval:', json.dumps(scores), flush=True)
+            if not a.smoke_test and scores['val'] < best_val:
+                best_val = scores['val']
+                save(best=True)
         if not a.smoke_test and (step % a.save_every == 0 or step == a.max_steps):
             save()
     if a.smoke_test:

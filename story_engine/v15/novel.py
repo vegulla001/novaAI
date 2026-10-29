@@ -176,9 +176,17 @@ def run(spec,*,outdir,outline_file=None,checkpoint=None,tokenizer=None,plan_only
             text=generate(model,tok,prompt,max_new_tokens=max_new_tokens,
                           temperature=temperature,top_k=top_k,
                           seed=seed+chapter['number']*1000+scene['number'])
+            # Preserve every raw generation, including failures, for debugging.
+            raw_dir = out / 'raw_scenes'
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            raw_file = raw_dir / f"chapter_{chapter['number']:02d}_scene_{scene['number']:02d}.txt"
+            raw_file.write_text(text + '\n', encoding='utf-8')
             issues=validate(text,scene)
             if issues:
-                failures.append({'chapter':chapter['number'],'scene':scene['number'],'issues':issues})
+                failures.append({'chapter':chapter['number'],'scene':scene['number'],
+                                 'issues':issues,'raw_file':str(raw_file),
+                                 'generated_words':len(text.split()),
+                                 'preview':text[:250]})
                 scenes.append('[REJECTED SCENE: '+', '.join(issues)+']')
             else:
                 scenes.append(text)
