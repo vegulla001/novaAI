@@ -75,7 +75,8 @@ def render_beat(beat: dict, people: dict) -> str:
         tag = beat.get('tag', 'said')
         if tag not in {'said', 'whispered', 'asked', 'answered', 'warned', 'replied'}:
             raise StoryError('invalid dialogue tag')
-        return f'“{sentence(quote)}” {actor} {tag}.'
+        quote = quote.rstrip(' .!?') + (quote[-1] if quote.endswith(('?', '!')) else ',')
+        return f'“{quote}” {actor} {tag}.'
     if kind == 'interaction':
         other = ensure_actor(people, beat.get('with'))
         if other == actor:
@@ -97,6 +98,14 @@ def validate_detail(detail: str, story: dict, recent_details: list[str]) -> list
     reasons = []
     if not detail or len(detail) > 180:
         reasons.append('detail missing or too long')
+    # A single capital, ellipsis, or a short fragment is not a usable atmospheric detail.
+    words = re.findall(r"[A-Za-z]+(?:['’][A-Za-z]+)?", detail)
+    if len(words) < 5 or len(detail.strip()) < 25:
+        reasons.append('detail is too short to be a complete descriptive sentence')
+    if re.search(r'\.{2,}|…|[\[\]{}<>]', detail):
+        reasons.append('detail contains ellipsis or markup')
+    if re.fullmatch(r'\s*(?:[A-Za-z]\s*\.|[.?!…\s]+)\s*', detail):
+        reasons.append('detail is an initial or punctuation-only fragment')
     if '\n' in detail or '"' in detail or '“' in detail or '”' in detail:
         reasons.append('detail contains dialogue or line break')
     if not re.search(r'[.!?]$', detail):
@@ -127,6 +136,7 @@ class DetailGenerator:
     tokenizer_path: str
     device: str
     seed: int
+    prompt_style: str = 'continuation'
     def __post_init__(self):
         import torch
         from tokenizers import Tokenizer
@@ -140,25 +150,44 @@ class DetailGenerator:
         self.index = 0
 
     def generate(self, location: str, previous: str, max_tokens: int) -> str:
-        # Model output is a candidate for a detail *only*, never the scene itself.
-        prompt = (
-            'Describe the atmosphere of the following scene in one short sentence. '
-            'Do not mention people, names, or actions.\n\n'
-            f'Location: {location}\n'
-            f'Previous sentence: {previous}\n'
-            'Atmosphere: '
-        )
+        """Return one candidate detail and retain the raw model output for audit.
+
+        Continuation prompt echoes the model's SFT format; it is NOT a new
+        learned capability and does not guarantee a useful description.
+        """
+        if self.prompt_style == 'continuation':
+            prompt = (
+                'Continue the following fiction scene naturally, preserving its characters, point of view, and events.\n\n'
+                'Story so far:\n'
+                f'{previous}\n\n'
+                'Continuation:\n'
+            )
+        elif self.prompt_style == 'instruction':
+            prompt = (
+                'Describe the atmosphere of the following scene in one short sentence. '
+                'Do not mention people, names, or actions.\n\n'
+                f'Location: {location}\n'
+                f'Previous sentence: {previous}\n'
+                'Atmosphere: '
+            )
+        else:
+            raise StoryError('invalid prompt style: ' + self.prompt_style)
         ids = self.tok.encode(prompt).ids
-        if len(ids) >= 1024:
-            raise StoryError('atmosphere prompt exceeds expected context capacity')
+        block_size = getattr(self.model.config, 'block_size', 1024) if hasattr(self.model, 'config') else 1024
+        if len(ids) + max_tokens > block_size:
+            raise StoryError('generation prompt and output exceed model context limit')
         x = self.torch.tensor([ids], dtype=self.torch.long, device=self.device)
         self.torch.manual_seed(self.seed + self.index)
         self.index += 1
         with self.torch.inference_mode():
             out = self.model.generate(x, max_new_tokens=max_tokens, temperature=0.65, top_k=30)
         raw = self.tok.decode(out[0].tolist()[len(ids):], skip_special_tokens=True).strip()
-        parts = re.split(r'(?<=[.!?])\s+', raw, maxsplit=1)
-        return parts[0].strip() if parts else ''
+        self.last_generation = {'prompt_style': self.prompt_style, 'prompt': prompt, 'raw_output': raw}
+        # Only one sentence may enter the separate sensory-detail validator.
+        # Preserve the entire raw generation in last_generation; never silently
+        # replace it with fixed story text.
+        sentence_match = re.search(r'[^\n.!?]+[.!?](?=\s|$)', raw)
+        return sentence_match.group(0).strip() if sentence_match else raw
 
 
 def generate_story(story: dict, model: Any = None, detail_tokens: int = 32) -> dict:
@@ -185,6 +214,8 @@ def generate_story(story: dict, model: Any = None, detail_tokens: int = 32) -> d
             raw = model.generate(location, line, detail_tokens)
             reasons = validate_detail(raw, story, inserted_details)
             detail_info = {'status': 'rejected' if reasons else 'accepted', 'raw': raw, 'reasons': reasons}
+            if isinstance(getattr(model, 'last_generation', None), dict):
+                detail_info['model_debug'] = copy.deepcopy(model.last_generation)
             if not reasons:
                 lines.append(raw)
                 inserted_details.append(raw)
@@ -210,6 +241,7 @@ def main():
     p.add_argument('--device', default='cpu')
     p.add_argument('--seed', type=int, default=42)
     p.add_argument('--detail-tokens', type=int, default=32)
+    p.add_argument('--prompt-style', choices=['continuation', 'instruction'], default='continuation')
     p.add_argument('--output', default='reports/v16_registry_writer.json')
     p.add_argument('--text-output', default=None)
     p.add_argument('--state-in', default=None, help='JSON state saved by earlier scene')
@@ -221,7 +253,7 @@ def main():
         if not isinstance(previous, dict):
             raise StoryError('state-in must contain a JSON object')
         story['initial_state'] = previous
-    model = DetailGenerator(a.checkpoint, a.tokenizer, a.device, a.seed) if a.checkpoint else None
+    model = DetailGenerator(a.checkpoint, a.tokenizer, a.device, a.seed, a.prompt_style) if a.checkpoint else None
     result = generate_story(story, model, a.detail_tokens)
     out = Path(a.output)
     out.parent.mkdir(parents=True, exist_ok=True)
