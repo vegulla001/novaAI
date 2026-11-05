@@ -1,26 +1,17 @@
-# StoryAI V13: real context length upgrade
+# Story AI v16: Character guard (no training)
 
-Your V8 checkpoint was trained at **512 tokens**. This patch increases the **context window** to **1024** (or **2048**) using the existing RoPE architecture. The token vocabulary stays the same; do **not** change the tokenizer. Context length is different from maximum generated output length.
-
-The patch is an **independent continuation experiment**, not a claim that novel quality is fixed. No weights are downloaded. V8 and V12 checkpoints are not overwritten.
+A **deterministic, fail-closed application fix**, not a trained character-copy capability. Provide the story's canonical characters and `safe_beats` in a scene JSON file. Without a checkpoint, it emits the approved beats with zero GPU use. With a checkpoint, it attempts one model continuation and only accepts it if it passes a conservative, incomplete surface validator. If rejected, it emits the approved beats; `generated_by_model=false` shows this plainly.
 
 ## Install
+Copy `training/v16/character_guard.py` to your existing repo at that path, and `scene_castle.json` to the project root.
 
-Copy `training/v13/train_long_context.py` into the same path in your project. Keep your original `model.py` unchanged.
+## Run without GPU
+`PYTHONPATH=/workspace/story-ai python -m training.v16.character_guard --scene scene_castle.json --output reports/v16_character_guard.json`
 
-## Train with longer context (PowerShell, from project root)
+## Optional one-pass model candidate
+`PYTHONPATH=/workspace/story-ai python -m training.v16.character_guard --scene scene_castle.json --checkpoint checkpoints/v16_character_dynamic_01/sft_best.pt --device cuda --output reports/v16_character_guard.json`
 
-```powershell
-python -m training.v13.train_long_context --block-size 1024 --steps 1000 --batch-size 2 --grad-accum 8
-```
-
-For a GPU with sufficient VRAM, try `--block-size 2048 --batch-size 1 --grad-accum 16`. A 2048-token sequence needs much more memory/time than 512. On CPU, test with `--steps 2 --batch-size 1 --grad-accum 1` first.
-
-Input: `checkpoints/storyai_v8_best.pt` and `dataset/processed/{train.npy,val.npy,tokenizer.json}`.
-Output: `checkpoints/storyai_v13_long_context.pt`, `output/v13_long_context/report.json`.
-
-**Critical:** RoPE allows extending the context *structurally* without changing weight tensor sizes, but useful long-range attention must be learned with continued training. Merely setting block_size=2048 does not give 2048-token comprehension.
-
-This uses the original token streams, not the 16 authored scenes. Training data quality, model capacity (7.47M parameters), and instruction-following remain separate problems. For chapter generation, plan scenes and carry forward a compact story bible; a 2048-token context is not an entire novel.
-
-If `dataset/processed/train.npy` is missing, restore your V8 training token arrays; don't substitute token arrays made using a different tokenizer.
+## Important limits
+- This does **not** force the neural model to copy names, and the supplied beats are authored not generated.
+- The validator catches missing explicit character names, obvious unknown capitalized words, JSON contamination, and explicitly prohibited phrases. It cannot guarantee semantic consistency, grammar, or story quality. Adding a character requires updating scene JSON.
+- For a trustworthy novel writer, extend this to a real state store and stronger semantic verification. This is a narrow, immediate character-identity safety barrier to stop accepting your model's bad output.

@@ -1,0 +1,112 @@
+{
+  "mode": "registry_composed",
+  "text": "Arin held his father's warning letter close as rain swept across the abandoned castle.\n\nM.\n\nElara noticed a scraping sound beyond the sealed northern gate.\n\n“We must not open the northern gate.” Arin warned.\n\nElara raised her lantern to guide Arin.\n\n...\n\n“Then we follow the wall and look for another entrance.” Elara replied.\n\nArin followed the outer wall while keeping the warning letter safe.",
+  "character_mentions": {
+    "Arin": 4,
+    "Elara": 3
+  },
+  "ai_detail_count": 2,
+  "total_beats": 6,
+  "generated_full_scene_by_model": false,
+  "state": {
+    "northern_gate_open": false,
+    "father_missing": true,
+    "has_letter": true,
+    "route": "outer_wall",
+    "at_outer_wall": true
+  },
+  "trace": [
+    {
+      "beat_id": "b1",
+      "line": "Arin held his father's warning letter close as rain swept across the abandoned castle.",
+      "detail": {
+        "status": "accepted",
+        "raw": "M.",
+        "reasons": []
+      },
+      "state_after": {
+        "northern_gate_open": false,
+        "father_missing": true,
+        "has_letter": true
+      }
+    },
+    {
+      "beat_id": "b2",
+      "line": "Elara noticed a scraping sound beyond the sealed northern gate.",
+      "detail": {
+        "status": "rejected",
+        "raw": "“Say, tell me, do not speak of me?” she asked.",
+        "reasons": [
+          "detail contains dialogue or line break",
+          "possible name or unsupported proper noun: Say",
+          "possible unapproved actor or action"
+        ]
+      },
+      "state_after": {
+        "northern_gate_open": false,
+        "father_missing": true,
+        "has_letter": true
+      }
+    },
+    {
+      "beat_id": "b3",
+      "line": "“We must not open the northern gate.” Arin warned.",
+      "detail": {
+        "status": "not_requested",
+        "raw": null,
+        "reasons": []
+      },
+      "state_after": {
+        "northern_gate_open": false,
+        "father_missing": true,
+        "has_letter": true
+      }
+    },
+    {
+      "beat_id": "b4",
+      "line": "Elara raised her lantern to guide Arin.",
+      "detail": {
+        "status": "accepted",
+        "raw": "...",
+        "reasons": []
+      },
+      "state_after": {
+        "northern_gate_open": false,
+        "father_missing": true,
+        "has_letter": true
+      }
+    },
+    {
+      "beat_id": "b5",
+      "line": "“Then we follow the wall and look for another entrance.” Elara replied.",
+      "detail": {
+        "status": "not_requested",
+        "raw": null,
+        "reasons": []
+      },
+      "state_after": {
+        "northern_gate_open": false,
+        "father_missing": true,
+        "has_letter": true,
+        "route": "outer_wall"
+      }
+    },
+    {
+      "beat_id": "b6",
+      "line": "Arin followed the outer wall while keeping the warning letter safe.",
+      "detail": {
+        "status": "not_requested",
+        "raw": null,
+        "reasons": []
+      },
+      "state_after": {
+        "northern_gate_open": false,
+        "father_missing": true,
+        "has_letter": true,
+        "route": "outer_wall",
+        "at_outer_wall": true
+      }
+    }
+  ],
+  "note": "Character names and plot actions come from the structured story plan. Only accepted sensory details may come from the model."
+}
