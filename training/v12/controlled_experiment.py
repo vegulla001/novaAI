@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 import torch
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 from training.v12.plan_training import build_example, instruction_for, plan_for
 

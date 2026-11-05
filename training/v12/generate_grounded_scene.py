@@ -6,7 +6,7 @@ import hashlib
 import re
 from pathlib import Path
 import torch
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 from training.v12.train_natural_scenes import generate
 

@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 
 import torch
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 
 NAMES = ['Rhea','Pax','Oren','Lysa','Ilse','Rowan','Dara','Luis','Mira','Tovin',

@@ -10,7 +10,7 @@ import random
 from pathlib import Path
 
 import torch
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 
 

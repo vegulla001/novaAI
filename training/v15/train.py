@@ -46,6 +46,7 @@ def get_args():
     p.add_argument('--seed', type=int, default=1337)
     p.add_argument('--device', default='auto', choices=['auto', 'cpu', 'cuda'])
     p.add_argument('--smoke-test', action='store_true', help='One optimizer step; no checkpoints or GPU needed')
+    p.add_argument('--eval-only', action='store_true', help='Evaluate supplied checkpoint without training or writing files')
     return p.parse_args()
 
 
@@ -102,7 +103,9 @@ def main():
     if a.lr_decay_steps is None:
         a.lr_decay_steps = a.max_steps
 
-    if a.lr_decay_steps <= a.warmup_steps:
+    if a.eval_only and (a.smoke_test or sum(bool(v) for v in (a.resume, a.init_from, a.restart_from)) != 1):
+        raise ValueError('--eval-only requires exactly one checkpoint flag and cannot be combined with --smoke-test')
+    if not a.eval_only and a.lr_decay_steps <= a.warmup_steps:
         raise ValueError(
             '--lr-decay-steps must be greater than --warmup-steps'
         )
@@ -118,7 +121,7 @@ def main():
         raise ValueError('--restart-from currently supports pretrain only')
     if a.mode == 'sft' and not (a.init_from or a.resume or a.smoke_test):
         raise ValueError('SFT requires --init-from pretrained V15 checkpoint')
-    if min(a.block_size, a.batch_size, a.grad_accum, a.max_steps) < 1:
+    if min(a.block_size, a.batch_size, a.grad_accum, a.max_steps, a.eval_batches, a.eval_every, a.save_every) < 1:
         raise ValueError('block-size, batch-size, grad-accum and max-steps must be positive')
     if a.n_embd % a.n_head:
         raise ValueError('n-embd must be divisible by n-head')
@@ -210,6 +213,8 @@ def main():
     scaler = torch.amp.GradScaler('cuda', enabled=use_scaler)
     if a.resume and 'scaler' in ckpt:
         scaler.load_state_dict(ckpt['scaler'])
+    # A resumed run must not reset its best score to the current baseline.
+    resumed_best_val = float(ckpt.get('best_val', float('inf'))) if a.resume else float('inf')
     start_step = step
     if a.restart_from:
         print(f'WEIGHTS_ONLY_RESTART source_step={ckpt.get("step")} schedule_step=0 optimizer=fresh')
@@ -226,13 +231,19 @@ def main():
                 x = torch.from_numpy(np.stack([np.array(tokens[int(i):int(i)+a.block_size], dtype=np.int64) for i in group])).to(device)
                 y = torch.from_numpy(np.stack([np.array(tokens[int(i)+1:int(i)+a.block_size+1], dtype=np.int64) for i in group])).to(device)
                 fixed_batches[split].append((x, y))
-    best_val = float('inf')
+    best_val = resumed_best_val
     if a.mode == 'sft' and len(train) < 1000:
         print(f'WARNING: only {len(train)} SFT training examples. Pipeline testing only; high overfitting risk.')
 
     @torch.no_grad()
     def evaluate():
+        was_training = model.training
         model.eval()
+        # SFT sampling should be repeatable and should not advance training RNG.
+        rng_python = random.getstate()
+        rng_torch = torch.get_rng_state()
+        random.seed(a.eval_seed)
+        torch.manual_seed(a.eval_seed)
         results = {}
         for split in ('train', 'val'):
             losses = []
@@ -242,7 +253,9 @@ def main():
                     _, loss = model(x, y)
                 losses.append(float(loss.item()))
             results[split] = sum(losses) / len(losses)
-        model.train()
+        random.setstate(rng_python)
+        torch.set_rng_state(rng_torch)
+        model.train(was_training)
         return results
 
     def save(best=False):
@@ -262,11 +275,21 @@ def main():
         tmp.replace(target)
         print(f'Checkpoint saved: {target}')
 
+    if a.eval_only:
+        print('EVAL_ONLY:', json.dumps(evaluate()), flush=True)
+        return
+
     if not a.smoke_test:
         baseline = evaluate()
-        best_val = baseline['val']
         print('BASELINE_FIXED:', json.dumps(baseline), flush=True)
-        save(best=True)  # preserve starting weights unless actual validation improvement
+        if a.resume:
+            print(f'RESUME_BEST_PRESERVED: {best_val}', flush=True)
+            # Never overwrite the previous best just because training was resumed.
+        else:
+            best_val = baseline['val']
+            if Path(a.out_dir, f'{a.mode}_best.pt').exists():
+                raise FileExistsError('Output best checkpoint already exists; use a fresh --out-dir or --resume')
+            save(best=True)
 
     # For weights-only restart, step counts NEW updates. With --resume, it remains absolute.
     while step < a.max_steps:

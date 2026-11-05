@@ -1,6 +1,6 @@
 """CPU-only data/model interface smoke test; never updates checkpoints."""
 import argparse, hashlib, json, pathlib, torch
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 
 def prompt_for(r):

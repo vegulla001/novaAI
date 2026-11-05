@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 
 import torch
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 from training.v12.train_placeholder_binding import (CHAR1, CHAR2, STOP, SETTINGS,
                                                     prompt as template_prompt,
