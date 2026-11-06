@@ -308,6 +308,9 @@ def main():
             "step": step,
             "metrics": metrics,
             "sampling_rng": rng.getstate(),
+            "best_score": best_score,
+            "prose_limit": prose_limit,
+            "task_counts": task_counts.copy(),
             "torch_rng": torch.get_rng_state(),
         }
         if a.mode == "pretrain":
@@ -334,6 +337,45 @@ def main():
         else sum(baseline[t] * w for t, w in zip(TASKS, WEIGHTS))
     )
     prose_limit = baseline.get("prose", float("inf")) * 1.05
+
+    if a.resume:
+        best_path = out / (a.mode + "_best.pt")
+        best_ckpt = (
+            torch.load(best_path, map_location="cpu", weights_only=False)
+            if best_path.exists() else checkpoint
+        )
+
+        def checkpoint_score(c):
+            m = c.get("metrics", {})
+            if a.mode == "pretrain":
+                return float(m.get("pretrain", float("inf")))
+            if all(t in m for t in TASKS):
+                return sum(float(m[t]) * w for t, w in zip(TASKS, WEIGHTS))
+            return float("inf")
+
+        best_score = min(
+            float(checkpoint.get("best_score", float("inf"))),
+            float(best_ckpt.get("best_score", float("inf"))),
+            checkpoint_score(best_ckpt),
+        )
+
+        prose_limit = float(
+            checkpoint.get(
+                "prose_limit",
+                best_ckpt.get(
+                    "prose_limit",
+                    float(best_ckpt.get("metrics", {}).get(
+                        "prose", baseline.get("prose", float("inf"))
+                    )) * 1.05
+                )
+            )
+        )
+        task_counts.update(checkpoint.get("task_counts", {}))
+        print(
+            "RESUME BEST:", best_score,
+            "PROSE LIMIT:", prose_limit,
+            flush=True
+        )
 
     if not a.smoke_test and not a.resume:
         save(a.mode + "_best.pt", baseline)
