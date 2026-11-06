@@ -27,9 +27,10 @@ def get_args():
     p.add_argument('--resume', default=None, help='Resume same-mode checkpoint including optimizer')
     p.add_argument('--restart-from', default=None, help='Load checkpoint model weights only; fresh optimizer and training schedule')
     p.add_argument('--eval-seed', type=int, default=20261029, help='Separate fixed validation sampling seed')
-    p.add_argument('--n-layer', type=int, default=8)
+    p.add_argument('--n-layer', type=int, default=13)
     p.add_argument('--n-head', type=int, default=8)
     p.add_argument('--n-embd', type=int, default=512)
+    p.add_argument('--continue-sft-from',default=None,help='Initialize SFT from an existing SFT checkpoint using model weights only')
     p.add_argument('--block-size', type=int, default=1024)
     p.add_argument('--batch-size', type=int, default=4)
     p.add_argument('--grad-accum', type=int, default=8)
@@ -115,12 +116,30 @@ def main():
     if a.smoke_test:
         a.max_steps, a.grad_accum, a.eval_batches = 1, 1, 1
         a.eval_every, a.save_every = 1, 1
-    if sum(bool(v) for v in (a.resume, a.init_from, a.restart_from)) > 1:
-        raise ValueError('Choose only one of --resume, --init-from, --restart-from')
+    checkpoint_options = (
+        a.resume,
+        a.init_from,
+        a.restart_from,
+        a.continue_sft_from,
+    )
+
+    if sum(bool(v) for v in checkpoint_options) > 1:
+        raise ValueError('Choose only one checkpoint initialization option')
+
+    if a.continue_sft_from and a.mode != 'sft':
+        raise ValueError('--continue-sft-from requires --mode sft')
     if a.restart_from and a.mode != 'pretrain':
         raise ValueError('--restart-from currently supports pretrain only')
-    if a.mode == 'sft' and not (a.init_from or a.resume or a.smoke_test):
-        raise ValueError('SFT requires --init-from pretrained V15 checkpoint')
+    if a.mode == 'sft' and not (
+        a.init_from
+        or a.resume
+        or a.continue_sft_from
+        or a.smoke_test
+    ):
+        raise ValueError(
+            'SFT requires --init-from, --resume, '
+            'or --continue-sft-from'
+        )
     if min(a.block_size, a.batch_size, a.grad_accum, a.max_steps, a.eval_batches, a.eval_every, a.save_every) < 1:
         raise ValueError('block-size, batch-size, grad-accum and max-steps must be positive')
     if a.n_embd % a.n_head:
@@ -179,12 +198,22 @@ def main():
         batch = lambda split: get_sft_batch(train if split == 'train' else val, a.batch_size, a.block_size, device)
     cfg = dict(block_size=a.block_size, vocab_size=vocab, n_layer=a.n_layer, n_head=a.n_head, n_embd=a.n_embd)
     ckpt = None
-    if a.resume or a.init_from or a.restart_from:
-        ckpt = load_checkpoint(a.resume or a.init_from or a.restart_from, device)
+    if any(checkpoint_options):
+        ckpt = load_checkpoint(
+            a.resume
+            or a.init_from
+            or a.restart_from
+            or a.continue_sft_from,
+            device
+        )
         if ckpt.get('tokenizer_sha256') != tokenizer_hash:
             raise ValueError('Checkpoint tokenizer hash mismatch')
         if a.init_from and ckpt.get('mode') != 'pretrain':
             raise ValueError('--init-from must point to a pretraining checkpoint')
+        if a.continue_sft_from and ckpt.get('mode') != 'sft':
+            raise ValueError(
+                '--continue-sft-from requires an SFT checkpoint'
+            )
         if (a.resume or a.restart_from) and ckpt.get('mode') != a.mode:
             raise ValueError('Cannot resume checkpoint from different mode')
         cfg = ckpt['model_config']

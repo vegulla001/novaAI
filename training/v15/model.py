@@ -12,13 +12,13 @@ import torch.nn.functional as F
 
 @dataclass
 class GPTConfig:
-    block_size: int = 2048
+    block_size: int = 1024
     vocab_size: int = 8192
-    n_layer: int = 6
-    n_head: int = 6
-    n_embd: int = 384
+    n_layer: int = 13
+    n_head: int = 8
+    n_embd: int = 512
     dropout: float = 0.0
-    bias: bool = False  # retained for nanoGPT configuration compatibility
+    bias: bool = False
     rope_theta: float = 10000.0
     rms_norm_eps: float = 1e-6
     swiglu_multiple_of: int = 256
@@ -201,7 +201,7 @@ class GPT(nn.Module):
         return flops_per_token * c.block_size * fwdbwd_per_iter / dt / 312e12
 
     @torch.no_grad()
-    def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None, top_p=None):
+    def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None, top_p=None, eos_id=None):
         if temperature <= 0:
             raise ValueError('temperature must be > 0')
         if top_p is not None and not (0 < top_p <= 1):
@@ -223,6 +223,10 @@ class GPT(nn.Module):
                 logits = torch.full_like(logits, float('-inf')).scatter(-1, sorted_idx, sorted_logits)
             idx_next = torch.multinomial(F.softmax(logits, dim=-1), num_samples=1)
             idx = torch.cat((idx, idx_next), dim=1)
+            if eos_id is not None and bool(
+                (idx_next == eos_id).all().item()
+            ):
+                break
         return idx
 
 # Friendly names used by this standalone StoryAI project.
