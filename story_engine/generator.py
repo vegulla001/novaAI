@@ -11,7 +11,7 @@ from typing import Any
 
 import torch
 
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 from generate_novel import sample
 from story_engine.validator import ChapterValidator

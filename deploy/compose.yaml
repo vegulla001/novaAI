@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: novel
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      POSTGRES_DB: novel
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U novel"]
+      interval: 5s
+      retries: 12
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: ["redisdata:/data"]
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    env_file: ../.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://novel:${POSTGRES_PASSWORD}@db:5432/novel
+      REDIS_URL: redis://redis:6379/0
+    ports: ["127.0.0.1:8080:8080"]
+    depends_on: [db, redis]
+  worker:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    command: ["celery", "-A", "novel_ai.worker.celery_app", "worker", "-Q", "novel", "--loglevel=INFO", "--concurrency=2"]
+    env_file: ../.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://novel:${POSTGRES_PASSWORD}@db:5432/novel
+      REDIS_URL: redis://redis:6379/0
+    depends_on: [db, redis]
+volumes:
+  pgdata: {}
+  redisdata: {}

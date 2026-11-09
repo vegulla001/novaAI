@@ -4,7 +4,7 @@ Outline and memory are deterministic orchestration, NOT proof of learned capabil
 import argparse, hashlib, json, re
 from pathlib import Path
 import torch
-from model import GPT, GPTConfig
+from training.v15.model import GPT, GPTConfig
 from tokenizer import BPETokenizer
 
 
